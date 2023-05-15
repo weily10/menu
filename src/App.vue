@@ -5,7 +5,7 @@ import Body from "./components/Body.vue"
 
 <template>
   <main>
-    <div>
+    <div class="text-sm">
       <Header></Header>
       <Body></Body>
    
