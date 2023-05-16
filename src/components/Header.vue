@@ -1,9 +1,9 @@
 <script setup>
+
 import { ref, watch } from "vue";
 
 const show = ref(false);
 const showSearchbar = () => {
-  console.log("asasa", !show.value);
   if (!show.value) {
     show.value = true;
   } else {
@@ -14,7 +14,9 @@ const showSearchbar = () => {
 <template>
   <div>
     <div class="m-3 flex justify-between">
-      <div class="text-base m-3">logo</div>
+      <div class="text-base m-3">
+        <img src="../assets/icons/logo.svg" alt="" class="w-8 h-8">
+      </div>
       <div class="flex">
         <button type="button" class="text-white" @click="showSearchbar">
           <svg
@@ -52,7 +54,7 @@ const showSearchbar = () => {
                 placeholder="查詢"
               />
             </div>
-            <button type="submit" class="btn-primary">
+            <button type="submit" class="btn-primary ml-3">
               查詢
               <span class="sr-only">Search</span>
             </button>

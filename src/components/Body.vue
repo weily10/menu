@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from "vue";
-import hamburger from "../assets/images/hamburger.jpeg";
+import hamburger from "../assets/images/hamburger.png";
 import sandwich from "../assets/images/sandwich.png";
+import spaghetti from "../assets/images/spaghetti.jpeg";
 
 const items = ref([
   { id: "breakfast", name: "主食" },
@@ -11,8 +12,24 @@ const items = ref([
 ]);
 const radioVar = ref("breakfast");
 const breakfast = ref([
-  { product: "漢堡", price: 102, img: hamburger },
-  { product: "三明治", price: 60, img: sandwich },
+  {
+    product: "漢堡",
+    price: 102,
+    img: hamburger,
+    description: "麵包、萵苣、培根、番茄、澳洲牛肉、特色醬",
+  },
+  {
+    product: "三明治",
+    price: 60,
+    img: sandwich,
+    description: "白吐司、起司、火腿",
+  },
+  {
+    product: "義大利麵",
+    price: 160,
+    img: spaghetti,
+    description: "麵、起司、火腿",
+  }
 ]);
 
 const drinks = ref([
@@ -20,7 +37,7 @@ const drinks = ref([
   { product: "奶茶", price: 30, img: sandwich },
 ]);
 const changeCategory = (i) => {
-  radioVar.value = i.target.value
+  radioVar.value = i.target.value;
   console.log(radioVar);
 };
 </script>
@@ -46,29 +63,33 @@ const changeCategory = (i) => {
       </ul>
     </div>
 
-    <div class="mt-3 mx-3 text-sm" v-show="radioVar == 'breakfast'">
+    <div class="mt-3 mx-3 text-sm" v-if="radioVar == 'breakfast'">
       <div
         v-for="(item, index) in breakfast"
         :key="index + 'index'"
-        class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-3"
+        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-3"
       >
-        <div class="flex p-3 h-40">
-          <img
-            class="object-cover"
-            :src="item.img"
-            alt="product image"
-            width="200"
-            height="100"
-          />
-          <div class="ml-2 flex flex-col justify-between">
-            <div class="flex justify-between">
-              <p class="font-semibold text-gray-600">
-                {{ item.product }}
-              </p>
-              <p class="text-gray-600">{{ item.price }} 元</p>
+        <div class="flex p-3">
+          <div class="w-1/2">
+            <img :src="item.img" class="w-full h-[130px] object-cover" />
+          </div>
+          <div
+            class="ml-3 space-y-3 w-1/2 h-[130px] flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex justify-between">
+                <p class="font-semibold text-gray-600">
+                  {{ item.product }}
+                </p>
+                <p class="text-gray-600">{{ item.price }} 元</p>
+              </div>
+              <div class="text-xs text-gray-400 mt-3">
+                {{ item.description }}
+              </div>
             </div>
-            <div class="pl-3">
-              <button class="btn-primary w-28 text-center">加入購物車</button>
+
+            <div class="align-bottom">
+              <button class="btn-primary w-full text-center">加入購物車</button>
             </div>
           </div>
         </div>
