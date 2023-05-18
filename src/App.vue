@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import Header from "./components/Header.vue";
 import Body from "./components/Body.vue"
+import Footer from "./components/Footer.vue"
+
+function finishOrder(){
+  console.log('aaaa')
+}
+
 </script>
 
 <template>
@@ -8,6 +14,7 @@ import Body from "./components/Body.vue"
     <div class="text-sm">
       <Header></Header>
       <Body></Body>
+      <Footer @finishOrder="finishOrder"></Footer>
    
     </div>
   </main>
