@@ -7,9 +7,11 @@ import milktea from "../assets/images/milktea.png";
 import nuggets from "../assets/images/nuggets.png";
 import combo1 from "../assets/images/combo1.png";
 
+const quantity = ref(0)
+const cartItems = ref([])
 
 const items = ref([
-  { id: "set", name:"套餐"},
+  { id: "set", name: "套餐" },
   { id: "breakfast", name: "主食" },
   { id: "drinks", name: "飲料" },
   { id: "solo", name: "單點" },
@@ -23,6 +25,7 @@ const menu = ref([
     img: combo1,
     description: "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
     type: "set",
+    quantity:0
   },
   {
     product: "漢堡組合",
@@ -30,6 +33,7 @@ const menu = ref([
     img: combo1,
     description: "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
     type: "set",
+    quantity:0
   },
   {
     product: "漢堡組合",
@@ -37,6 +41,7 @@ const menu = ref([
     img: combo1,
     description: "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
     type: "set",
+    quantity:0
   },
   {
     product: "漢堡組合",
@@ -44,6 +49,7 @@ const menu = ref([
     img: combo1,
     description: "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
     type: "set",
+    quantity:0
   },
   {
     product: "漢堡",
@@ -51,6 +57,7 @@ const menu = ref([
     img: hamburger,
     description: "麵包、萵苣、培根、番茄、澳洲牛肉、特色醬",
     type: "breakfast",
+    quantity:0
   },
   {
     product: "三明治",
@@ -58,6 +65,7 @@ const menu = ref([
     img: sandwich,
     description: "白吐司、起司、火腿",
     type: "breakfast",
+    quantity:0
   },
   {
     product: "義大利麵",
@@ -65,6 +73,7 @@ const menu = ref([
     img: spaghetti,
     description: "麵、起司、火腿",
     type: "breakfast",
+    quantity:0
   },
   {
     product: "奶茶",
@@ -72,6 +81,7 @@ const menu = ref([
     img: milktea,
     description: "",
     type: "drinks",
+    quantity:0
   },
   {
     product: "幾塊（6塊）",
@@ -79,8 +89,8 @@ const menu = ref([
     img: nuggets,
     description: "",
     type: "solo",
-  }
-  
+    quantity:0
+  },
 ]);
 
 const drinks = ref([
@@ -91,12 +101,19 @@ const changeCategory = (i) => {
   radioVar.value = i.target.value;
   console.log(radioVar);
 };
+function addQuantity(item){
+  console.log('item',item.quantity);
+  item.quantity++
+}
+function addToCart(){
+  cartItems.push()
+}
 </script>
 <template>
   <div>
     <hr class="border-t border-solid" />
     <div class="flex mt-3 mx-3 pb-3 flex-wrap overflow-x-scroll">
-      <ul class="flex space-x-3 ">
+      <ul class="flex space-x-3">
         <li v-for="(item, index) in items" :key="index + 'index'">
           <input
             v-model="radioVar"
@@ -114,11 +131,11 @@ const changeCategory = (i) => {
       </ul>
     </div>
 
-    <div class=" mx-3 text-sm">
+    <div class="mx-3 text-sm">
       <div v-for="(item, index) in menu" :key="index + 'index'">
         <div
           v-if="radioVar == item.type"
-          class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-3"
+          class="bg-white border border-gray-200 rounded-lg shadow mb-3"
         >
           <div class="flex p-3">
             <div class="w-1/2">
@@ -139,8 +156,21 @@ const changeCategory = (i) => {
                 </div>
               </div>
 
-              <div class="align-bottom">
-                <button class="btn-primary w-full text-center">
+              <div class="flex space-x-3">
+                <div class="relative w-full">
+                  <input type="number" class="pl-10 border-primary h-[33px]" v-model="item.quantity" />
+                  <button
+                    @click="addQuantity(item)"
+                    type="submit"
+                    class="absolute top-0 left-0 px-2.5 text-sm text-white bg-slate-600 rounded-l-lg border border-gray-600 h-[33px]"
+                  >
+                    <span>+</span>
+                  </button>
+                </div>
+                <button
+                  class="btn-primary w-full text-center leading-none text-xs"
+                  @click="addToCart(item)"
+                >
                   加入購物車
                 </button>
               </div>

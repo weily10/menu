@@ -13,7 +13,7 @@ const showSearchbar = () => {
 </script>
 <template>
   <div>
-    <div class="m-3 flex justify-between">
+    <div class="mx-2 flex justify-between">
       <div class="text-base m-3">
         <img src="../assets/icons/logo.svg" alt="" class="w-8 h-8">
       </div>
