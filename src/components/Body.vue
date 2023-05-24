@@ -105,8 +105,11 @@ function addQuantity(item){
   console.log('item',item.quantity);
   item.quantity++
 }
-function addToCart(){
-  cartItems.push()
+function addToCart(item){
+      if(item.quantity !== 0){
+      cartItems.value.push(item)
+  }
+
 }
 </script>
 <template>
