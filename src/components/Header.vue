@@ -47,26 +47,28 @@ const showSearchbar = () => {
     <div>
       <div v-if="show">
         <hr class="border-t border-gray-300" />
-        <div class="py-3 mx-3">
-          <form class="flex items-center">
-            <label for="simple-search" class="sr-only">Search</label>
+        <div class="flex items-center py-3 mx-3">
+          <label for="simple-search" class="sr-only">Search</label>
 
-            <div class="relative w-full">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-              ></div>
-              <input
-                type="text"
-                id="simple-search"
-                class="border-primary"
-                placeholder="查詢"
-              />
-            </div>
-            <button type="submit" class="btn-primary ml-3">
-              查詢
-              <span class="sr-only">Search</span>
-            </button>
-          </form>
+          <div class="relative w-full">
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            ></div>
+            <input
+              v-model="keyword"
+              type="text"
+              id="simple-search"
+              class="border-primary"
+              placeholder="查詢"
+            />
+          </div>
+          <button
+            class="btn-primary ml-3"
+            @click="$emit('showResult', keyword)"
+          >
+            查詢
+            <span class="sr-only">Search</span>
+          </button>
         </div>
       </div>
     </div>

@@ -3,8 +3,8 @@ import Header from "./components/Header.vue";
 import Body from "./components/Body.vue"
 import Footer from "./components/Footer.vue"
 
-function finishOrder(){
-  console.log('aaaa')
+function showResult(keyword){
+  console.log('aaaa',keyword)
 }
 
 </script>
@@ -12,7 +12,7 @@ function finishOrder(){
 <template>
   <main>
     <div class="text-sm">
-      <Header></Header>
+      <Header @showResult="showResult"></Header>
       <Body></Body>
       <Footer @finishOrder="finishOrder"></Footer>
    
