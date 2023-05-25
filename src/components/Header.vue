@@ -1,6 +1,7 @@
-<script setup>
-import { ref, watch } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 
+const keyword = ref('')
 const show = ref(false);
 const showSearchbar = () => {
   if (!show.value) {
