@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+
 const keyword = ref('')
 const show = ref(false);
 const showSearchbar = () => {
@@ -10,6 +11,9 @@ const showSearchbar = () => {
     show.value = false;
   }
 };
+function showCartItems(){
+  
+}
 </script>
 <template>
   <div>

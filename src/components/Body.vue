@@ -3,7 +3,26 @@ import { ref } from "vue";
 
 
 const cartItems = ref([])
-defineProps<{menu: any[]}>()
+defineProps<{
+  menu: {
+    "id": number,
+    "product": string,
+    "price": number,
+    "img": string,
+    "description": string,
+    "type": string,
+    "quantity": number
+  }[],
+  filteredMenu:{
+    "id": number,
+    "product": string,
+    "price": number,
+    "img": string,
+    "description": string,
+    "type": string,
+    "quantity": number
+  }[]
+}>()
 
 const items = ref([
   { id: "set", name: "套餐" },
@@ -20,15 +39,15 @@ const radioVar = ref("set");
 //   { product: "果汁", price: 40, img: hamburger },
 //   { product: "奶茶", price: 30, img: sandwich },
 // ]);
-const changeCategory = (i) => {
+const changeCategory = (i: any) => {
   radioVar.value = i.target.value;
-  console.log(radioVar);
+  console.log('radiovar',radioVar);
 };
-function addQuantity(item) {
+function addQuantity(item:any) {
   console.log('item', item.quantity);
   item.quantity++
 }
-function addToCart(item) {
+function addToCart(item:any) {
   if (item.quantity !== 0) {
     cartItems.value.push(item)
   }
@@ -51,7 +70,7 @@ function addToCart(item) {
     </div>
 
     <div class="mx-3 text-sm">
-      <div v-for="(item, index) in menu" :key="index + 'index'">
+      <div v-for="(item, index) in filteredMenu" :key="index + 'index'">
         <div v-if="radioVar == item.type" class="bg-white border border-gray-200 rounded-lg shadow mb-3">
           <div class="flex p-3">
             <div class="w-1/2">
