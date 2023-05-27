@@ -16,12 +16,10 @@ const filteredMenu = ref([])
 const menu = ref([])
 
 onMounted(() => {
-   axios.get('http://localhost:3000/menu').then(res => {
-    console.log('asadda', menu.value = res.data);
+  axios.get('http://localhost:3000/menu').then(res => {
+    menu.value = res.data
+    filteredMenu.value = menu.value
   })
-  filteredMenu.value = menu.value
-  console.log('mounted', filteredMenu.value);
-  
 })
 
 function showResult(keyword: any) {
@@ -29,9 +27,9 @@ function showResult(keyword: any) {
   filteredMenu.value = menu.value.find(item =>
     item.product === keyword
   )
-    console.log('aaasdasa',filteredMenu.value);
+  console.log('aaasdasa', filteredMenu.value);
 
-  
+
 
 
 
