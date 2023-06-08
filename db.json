@@ -4,16 +4,16 @@
       "id": 0,
       "product": "漢堡組合",
       "price": 180,
-      "img": "./assets/images/combo1.png",
+      "img": "../src/assets/images/combo1.png",
       "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
       "type": "set",
       "quantity": 0
     },
     {
       "id": 1,
-      "product": "漢堡組合",
+      "product": "set2",
       "price": 180,
-      "img": "./assets/images/combo1.png",
+      "img": "../src/assets/images/combo1.png",
       "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
       "type": "set",
       "quantity": 0
@@ -22,7 +22,7 @@
       "id": 2,
       "product": "漢堡組合",
       "price": 180,
-      "img": "./assets/images/combo1.png",
+      "img": "../src/assets/images/combo1.png",
       "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
       "type": "set",
       "quantity": 0
@@ -31,7 +31,7 @@
       "id": 3,
       "product": "漢堡組合",
       "price": 180,
-      "img": "./assets/images/combo1.png",
+      "img": "../src/assets/images/combo1.png",
       "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
       "type": "set",
       "quantity": 0
@@ -49,7 +49,7 @@
       "id": 5,
       "product": "三明治",
       "price": 60,
-      "img": "./assets/images/sandwich.png",
+      "img": "../src/assets/images/sandwich.png",
       "description": "白吐司、起司、火腿",
       "type": "breakfast",
       "quantity": 0
@@ -58,7 +58,7 @@
       "id": 6,
       "product": "義大利麵",
       "price": 160,
-      "img": "./assets/images/spaghetti.jpeg",
+      "img": "../src//assets/images/spaghetti.jpeg",
       "description": "麵、起司、火腿",
       "type": "breakfast",
       "quantity": 0
@@ -67,7 +67,7 @@
       "id": 7,
       "product": "奶茶",
       "price": 50,
-      "img": "./assets/images/milktea.png",
+      "img": "../src/assets/images/milktea.png",
       "description": "",
       "type": "drinks",
       "quantity": 0
@@ -76,7 +76,7 @@
       "id": 8,
       "product": "幾塊（6塊）",
       "price": 80,
-      "img": "./assets/images/nuggets.png",
+      "img": "../src/assets/images/nuggets.png",
       "description": "",
       "type": "solo",
       "quantity": 0

@@ -2,7 +2,9 @@
 import { ref } from "vue";
 
 
-const keyword = ref('')
+defineProps(['modelValue'])
+defineEmits(['update:modelValue'])
+
 const show = ref(false);
 const showSearchbar = () => {
   if (!show.value) {
@@ -60,20 +62,21 @@ function showCartItems(){
               class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
             ></div>
             <input
-              v-model="keyword"
+              :value="modelValue"
+              @input="$emit('update:modelValue',$event.target.value)"
               type="text"
               id="simple-search"
               class="border-primary"
               placeholder="查詢"
             />
           </div>
-          <button
+          <!-- <button
             class="btn-primary ml-3"
-            @click="$emit('showResult', keyword)"
+            @click="$emit('showResult')"
           >
             查詢
             <span class="sr-only">Search</span>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>

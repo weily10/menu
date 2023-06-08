@@ -12,15 +12,6 @@ defineProps<{
     "description": string,
     "type": string,
     "quantity": number
-  }[],
-  filteredMenu:{
-    "id": number,
-    "product": string,
-    "price": number,
-    "img": string,
-    "description": string,
-    "type": string,
-    "quantity": number
   }[]
 }>()
 
@@ -70,7 +61,7 @@ function addToCart(item:any) {
     </div>
 
     <div class="mx-3 text-sm">
-      <div v-for="(item, index) in filteredMenu" :key="index + 'index'">
+      <div v-for="(item, index) in menu" :key="index + 'index'">
         <div v-if="radioVar == item.type" class="bg-white border border-gray-200 rounded-lg shadow mb-3">
           <div class="flex p-3">
             <div class="w-1/2">
