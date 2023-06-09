@@ -21,8 +21,7 @@ watch(keyword,async (newKeyword) => {
   
    await axios.get('http://localhost:3000/menu').then(res => {
     console.log(newKeyword);
-    menu.value = res.data.filter((item:any) => item.product == newKeyword);
-    // menu.value = res.data
+    menu.value = res.data.filter((item:any) => item.product.includes(newKeyword));
   })
 })
 
