@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+interface item {
+  quantity: number
+}
 
-const cartItems = ref([])
+const cartItems = ref<item[]>([]);
 defineProps<{
   menu: {
     "id": number,
@@ -32,16 +35,18 @@ const radioVar = ref("set");
 // ]);
 const changeCategory = (i: any) => {
   radioVar.value = i.target.value;
-  console.log('radiovar',radioVar);
+  console.log('radiovar', radioVar);
 };
-function addQuantity(item:any) {
+function addQuantity(item: any) {
   console.log('item', item.quantity);
   item.quantity++
 }
-function addToCart(item:any) {
+function addToCart(item: any) {
   if (item.quantity !== 0) {
     cartItems.value.push(item)
   }
+  console.log('aa', cartItems.value);
+
 
 }
 </script>

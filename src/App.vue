@@ -12,18 +12,19 @@ const menu = ref([])
 
 onMounted(async() => {
   await axios.get('http://localhost:3000/menu').then(res => {
-
     menu.value = res.data
   })
 })
 
 watch(keyword,async (newKeyword) => {
-  
-   await axios.get('http://localhost:3000/menu').then(res => {
+  if(keyword){
+    await axios.get('http://localhost:3000/menu').then(res => {
     console.log(newKeyword);
-    menu.value = res.data.filter((item:any) => item.product.includes(newKeyword));
-  })
+     menu.value = res.data.filter((item:any) => item.product.includes(newKeyword));
+    })
+  }
 })
+
 
 
 // function showResult(keyword: any) {
@@ -60,7 +61,7 @@ watch(keyword,async (newKeyword) => {
     <div class="text-sm">
       <Header v-model="keyword" ></Header>
       <Body :menu="menu"></Body>
-      <Footer @finishOrder="finishOrder"></Footer>
+      <Footer @finishOrder=""></Footer>
 
     </div>
   </main>

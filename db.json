@@ -2,17 +2,17 @@
   "menu": [
     {
       "id": 0,
-      "product": "漢堡組合",
-      "price": 180,
+      "product": "漢堡套餐",
+      "price": 120,
       "img": "../src/assets/images/combo1.png",
-      "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
+      "description": "漢堡+可樂+薯條",
       "type": "set",
       "quantity": 0
     },
     {
       "id": 1,
       "product": "set2",
-      "price": 180,
+      "price": 130,
       "img": "../src/assets/images/combo1.png",
       "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
       "type": "set",
