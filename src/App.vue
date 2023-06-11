@@ -1,68 +1,62 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
-import axios from 'axios';
+import axios from "axios";
 import Header from "./components/Header.vue";
-import Body from "./components/Body.vue"
-import Footer from "./components/Footer.vue"
+import Body from "./components/Body.vue";
+import Footer from "./components/Footer.vue";
+import debounce from "../utils/debounce";
 
+const keyword = ref("");
+const menu = ref([]);
+const debounceFn = debounce((newKeyword: string) => {
+  axios.get("http://localhost:3000/menu").then((res) => {
+    console.log("api call", newKeyword);
+    menu.value = res.data.filter((item: any) =>
+      item.product.includes(newKeyword)
+    );
+  });
+}, 1000);
 
-const keyword = ref("")
-const menu = ref([])
-// const filteredMenu = ref([])
+onMounted(async () => {
+  await axios.get("http://localhost:3000/menu").then((res) => {
+    menu.value = res.data;
+  });
+});
 
-onMounted(async() => {
-  await axios.get('http://localhost:3000/menu').then(res => {
-    menu.value = res.data
-  })
-})
-
-watch(keyword,async (newKeyword) => {
-  if(keyword){
-    await axios.get('http://localhost:3000/menu').then(res => {
-    console.log(newKeyword);
-     menu.value = res.data.filter((item:any) => item.product.includes(newKeyword));
-    })
+watch(keyword, (newKeyword) => {
+  if (keyword) {
+    debounceFn(newKeyword);
   }
-})
-
-
+});
 
 // function showResult(keyword: any) {
 //   let a = menu.value.filter((item: any) => {
-    
+
 //     item.product.includes(keyword);
 //   })
-  // menu.value = computed(() => {
-  //     return menu.value.filter((item: any) => {
-  //     item.product.includes(keyword)
-  //   })
-  // })
+// menu.value = computed(() => {
+//     return menu.value.filter((item: any) => {
+//     item.product.includes(keyword)
+//   })
+// })
 
 //   console.log('menu.value', a);
 
 // }
 
-
-
-  //   filteredMenu.value = computed(() => {
-  //   return menu.value.filter((item: any) => {
-  //     item.product.includes(keyword)
-  //   })
-  // })
-
-
-
-
-
+//   filteredMenu.value = computed(() => {
+//   return menu.value.filter((item: any) => {
+//     item.product.includes(keyword)
+//   })
+// })
 </script>
 
 <template>
   <main>
     <div class="text-sm">
-      <Header v-model="keyword" ></Header>
+      <Header v-model="keyword"></Header>
       <Body :menu="menu"></Body>
       <Footer @finishOrder=""></Footer>
-
     </div>
   </main>
 </template>
