@@ -1,8 +1,3 @@
-
-
 <template>
-  <div>
-
-    
-  </div>
+  <div>ASSASASA</div>
 </template>
