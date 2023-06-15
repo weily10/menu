@@ -36,12 +36,16 @@ const changeCategory = (i: any) => {
   radioVar.value = i.target.value;
   console.log("radiovar", radioVar);
 };
-function goToProductPage() {
-  router.push("/product");
+function goToProductPage(item: any) {
+  let product = item;
+
+  router.push({
+    name: "Product",
+    params: { id: product.id },
+  });
 }
 
 function addQuantity(item: any) {
-  console.log("item", item.quantity);
   item.quantity++;
 }
 function addToCart(item: any) {
@@ -77,7 +81,7 @@ function addToCart(item: any) {
       <div
         v-for="(item, index) in menu"
         :key="index + 'index'"
-        @click="goToProductPage"
+        @click="goToProductPage(item)"
       >
         <div
           v-if="radioVar == item.type"

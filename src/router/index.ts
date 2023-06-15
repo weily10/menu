@@ -11,7 +11,7 @@ const routes = [
     name: "Home",
     component: Home,
   },
-  { path: "/product", component: ProductPage },
+  { path: "/menu/:id", name:"Product", component: ProductPage },
 ]
 
 const history = createWebHistory();

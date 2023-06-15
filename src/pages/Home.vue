@@ -10,7 +10,6 @@ const keyword = ref("");
 const menu = ref([]);
 const debounceFn = debounce((newKeyword: string) => {
   axios.get("http://localhost:3000/menu").then((res) => {
-    console.log("api call", newKeyword);
     menu.value = res.data.filter((item: any) =>
       item.product.includes(newKeyword)
     );
