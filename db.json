@@ -7,7 +7,22 @@
       "img": "../src/assets/images/combo1.png",
       "description": "漢堡+可樂+薯條",
       "type": "set",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {
+          "product": "牛肉漢堡",
+          "type":"main"
+        },
+        {
+          "product": "薯條",
+          "type": "side"
+        },
+        {
+          "product": "可樂",
+          "type": "drink"
+
+        }
+      ]
     },
     {
       "id": 1,

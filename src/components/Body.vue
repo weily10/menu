@@ -2,11 +2,6 @@
 import { ref } from "vue";
 import router from "../router/index";
 
-interface item {
-  quantity: number;
-}
-
-const cartItems = ref<item[]>([]);
 defineProps<{
   menu: {
     id: number;
@@ -43,16 +38,6 @@ function goToProductPage(item: any) {
     name: "Product",
     params: { id: product.id },
   });
-}
-
-function addQuantity(item: any) {
-  item.quantity++;
-}
-function addToCart(item: any) {
-  if (item.quantity !== 0) {
-    cartItems.value.push(item);
-  }
-  console.log("aa", cartItems.value);
 }
 </script>
 <template>
@@ -99,34 +84,15 @@ function addToCart(item: any) {
                   <p class="font-semibold text-gray-600">
                     {{ item.product }}
                   </p>
-                  <p class="text-gray-600">{{ item.price }} 元</p>
                 </div>
                 <div class="text-xs text-gray-400 mt-3">
                   {{ item.description }}
                 </div>
               </div>
-
-              <div class="flex space-x-3">
-                <div class="relative w-full">
-                  <input
-                    type="number"
-                    class="pl-10 border-primary h-[33px]"
-                    v-model="item.quantity"
-                  />
-                  <button
-                    @click="addQuantity(item)"
-                    type="submit"
-                    class="absolute top-0 left-0 px-2.5 text-sm text-white bg-slate-600 rounded-l-lg border border-gray-600 h-[33px]"
-                  >
-                    <span>+</span>
-                  </button>
-                </div>
-                <button
-                  class="btn-primary w-full text-center leading-none text-xs"
-                  @click="addToCart(item)"
-                >
-                  加入購物車
-                </button>
+              <div>
+                <p class="text-orange-500 text-base">
+                  <b>{{ item.price }} 元</b>
+                </p>
               </div>
             </div>
           </div>
