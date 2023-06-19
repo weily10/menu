@@ -85,7 +85,7 @@ function goToProductPage(item: any) {
                     {{ item.product }}
                   </p>
                 </div>
-                <div class="text-xs text-gray-400 mt-3">
+                <div class="text-xs text-gray-400 mt-3 overflow-auto h-12">
                   {{ item.description }}
                 </div>
               </div>

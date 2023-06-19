@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import router from "../router/index";
 import axios from "axios";
 
 const route = useRoute();
@@ -44,6 +45,15 @@ function addToCart() {
 
 <template>
   <div>
+    <div class="absolute mx-6 mt-3">
+      <button
+        class="text-sm text-white w-4 flex whitespace-nowrap"
+        @click="router.go(-1)"
+      >
+        <img src="../assets/icons/back.svg" alt="" />
+        <p class="flex self-center text-xs">回首頁</p>
+      </button>
+    </div>
     <div>
       <img :src="menu.img" alt="" />
     </div>
@@ -54,8 +64,19 @@ function addToCart() {
             {{ menu.product }}
           </h1>
         </div>
+        <div class="text-sm">
+          <div class="mt-2 text-gray-400">
+            <div class="text-sm">
+              <div class="my-3">
+                {{ menu.description }}
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="text-center flex justify-between">
-          <div class="self-center text-lg">${{ menu.price }}</div>
+          <div class="self-center text-orange-500 text-base">
+            <b>{{ menu.price }}元</b>
+          </div>
           <div class="flex items-center">
             <div
               class="px-3 leading-none text-gray-400 text-sm inline-block align-text-bottom"
@@ -86,18 +107,6 @@ function addToCart() {
           </div>
         </div>
 
-        <div class="">
-          <div class="text-sm text-gray-400">備註</div>
-          <div class="mt-2">
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="6"
-              class="w-full border pl-2 pt-1"
-            ></textarea>
-          </div>
-        </div>
         <div>
           <div class="text-sm text-gray-400 mb-2">客製化</div>
           <div class="flex space-x-2 mb-3">
@@ -109,10 +118,16 @@ function addToCart() {
             </div>
           </div>
         </div>
-        <div class="text-sm">
-          <div class="text-gray-400">描述</div>
+        <div class="">
+          <div class="text-sm text-gray-400">備註</div>
           <div class="mt-2">
-            {{ menu.description }}
+            <textarea
+              name=""
+              id=""
+              cols="30"
+              rows="3"
+              class="w-full border pl-2 pt-1"
+            ></textarea>
           </div>
         </div>
 
