@@ -11,16 +11,18 @@
       "customize": [
         {
           "product": "牛肉漢堡",
-          "type":"main"
+          "type":"main",
+          "img":"../src/assets/images/hamburger1.jpg"
         },
         {
           "product": "薯條",
-          "type": "side"
+          "type": "side",
+          "img":"../src/assets/images/frenchfries.jpg"
         },
         {
           "product": "可樂",
-          "type": "drink"
-
+          "type": "drinks",
+          "img": "../src/assets/images/cocacola.jpg"
         }
       ]
     },
@@ -89,6 +91,15 @@
     },
     {
       "id": 8,
+      "product": "可樂",
+      "price": 50,
+      "type": "drinks",
+      "img": "../src/assets/images/cocacola.jpg",
+      "description": "",
+      "quantity": 0
+    },
+    {
+      "id": 9,
       "product": "幾塊（6塊）",
       "price": 80,
       "img": "../src/assets/images/nuggets.png",

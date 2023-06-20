@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import router from "../router/index";
 import axios from "axios";
+import Modal from "../components/Modal.vue";
 
 const route = useRoute();
 
@@ -14,12 +15,14 @@ interface item {
   price?: number;
   customize?: [
     {
+      img?: string;
       product?: string;
     }
   ];
 }
-const cartItems = ref<item[]>([]);
+// const cartItems = ref<item[]>([]);
 const menu = ref<item>({});
+const showModal = ref(false);
 
 onMounted(() => {
   console.log(route.params);
@@ -39,25 +42,28 @@ function addToCart() {
   if (menu.value.quantity !== 0) {
     // cartItems.value.push(menu.value.quantity);
   }
-  console.log("aa", cartItems.value);
+}
+
+function confirm(item: object) {
+  console.log("aaa", item.img);
 }
 </script>
 
 <template>
-  <div>
+  <div class="h-screen">
     <div class="absolute mx-6 mt-3">
       <button
-        class="text-sm text-white w-4 flex whitespace-nowrap"
+        class="text-sm rounded-lg text-white bg-gray-700 w-22 flex py-2 px-3"
         @click="router.go(-1)"
       >
-        <img src="../assets/icons/back.svg" alt="" />
-        <p class="flex self-center text-xs">回首頁</p>
+        <p class="self-center text-xs">上一頁</p>
       </button>
     </div>
+
     <div>
       <img :src="menu.img" alt="" />
     </div>
-    <div class="fixed top-52 rounded-lg h-full bg-white w-full p-6">
+    <div class="rounded-lg bg-white w-full p-6">
       <div class="flex flex-col space-y-2">
         <div class="text-center">
           <h1>
@@ -67,19 +73,21 @@ function addToCart() {
         <div class="text-sm">
           <div class="mt-2 text-gray-400">
             <div class="text-sm">
-              <div class="my-3">
+              <div class="my-3 text-justify">
                 {{ menu.description }}
               </div>
             </div>
           </div>
         </div>
-        <div class="text-center flex justify-between">
-          <div class="self-center text-orange-500 text-base">
-            <b>{{ menu.price }}元</b>
+        <div class="text-center flex justify-between py-3">
+          <div class="self-center text-orange-500">
+            <b class="text-xl"
+              >{{ menu.price }} <span class="text-sm"> 元 </span></b
+            >
           </div>
           <div class="flex items-center">
             <div
-              class="px-3 leading-none text-gray-400 text-sm inline-block align-text-bottom"
+              class="pr-3 leading-none text-gray-400 text-sm inline-block align-text-bottom"
             >
               數量
             </div>
@@ -109,16 +117,18 @@ function addToCart() {
 
         <div>
           <div class="text-sm text-gray-400 mb-2">客製化</div>
-          <div class="flex space-x-2 mb-3">
+          <div class="flex space-x-2 mb-3" @click="showModal = true">
             <div v-for="item in menu.customize">
-              <div class="w-12 h-12 border-dashed border"></div>
+              <div class="w-12 h-12 border-dashed border">
+                <img :src="item.img" class="w-12 h-12 object-cover" alt="" />
+              </div>
               <p class="text-gray-500 text-xs mt-1 text-center">
                 {{ item.product }}
               </p>
             </div>
           </div>
         </div>
-        <div class="">
+        <div>
           <div class="text-sm text-gray-400">備註</div>
           <div class="mt-2">
             <textarea
@@ -130,16 +140,20 @@ function addToCart() {
             ></textarea>
           </div>
         </div>
-
-        <div class="">
-          <button
-            class="btn-primary w-full text-center leading-none text-xs"
-            @click="addToCart()"
-          >
-            加入購物車
-          </button>
-        </div>
       </div>
     </div>
+
+    <div class="fixed bottom-0 w-full px-6 py-3 bg-white">
+      <button class="btn-primary w-full text-center" @click="addToCart()">
+        加入購物車
+      </button>
+    </div>
+    <div class="h-9"></div>
+    <Modal
+      v-show="showModal"
+      :menu="menu"
+      @confirm="confirm"
+      @cancel="showModal = false"
+    ></Modal>
   </div>
 </template>
