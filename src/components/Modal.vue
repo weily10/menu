@@ -8,6 +8,13 @@ const selected = ref({});
 onMounted(() => {
   axios.get("http://localhost:3000/menu/").then((res) => {
     menu.value = res.data;
+    for (let item of menu.value) {
+      if (item.type === "drinks") {
+        selected.value = item;
+        return;
+      }
+    }
+    // selected.value = menu.value[0];
   });
 });
 </script>

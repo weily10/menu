@@ -46,6 +46,7 @@ function addToCart() {
 
 function confirm(item: object) {
   console.log("aaa", item.img);
+  showModal.value = false;
 }
 </script>
 
