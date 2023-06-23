@@ -1,21 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import axios from "axios";
+import { ref } from "vue";
 
-const menu = ref([]);
 const selected = ref({});
-
-onMounted(() => {
-  axios.get("http://localhost:3000/menu/").then((res) => {
-    menu.value = res.data;
-    for (let item of menu.value) {
-      if (item.type === "drinks") {
-        selected.value = item;
-        return;
-      }
-    }
-    // selected.value = menu.value[0];
-  });
+defineProps({
+  type: String,
+  menu: Array,
 });
 </script>
 
@@ -31,7 +20,7 @@ onMounted(() => {
           </div>
           <div class="flex justify-center">
             <div v-for="item in menu">
-              <div v-if="item.type == 'drinks'" class="w-12 m-3 text-center">
+              <div v-if="item.type == type" class="w-12 m-3 text-center">
                 <div class="w-12 align-center">
                   <label>
                     <input
@@ -86,6 +75,6 @@ onMounted(() => {
 }
 
 [type="radio"]:checked + img {
-  outline: 1px solid rgb(64, 64, 64);
+  outline: 1px solid rgb(228, 147, 61);
 }
 </style>

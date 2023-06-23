@@ -22,7 +22,9 @@ interface item {
 }
 // const cartItems = ref<item[]>([]);
 const menu = ref<item>({});
-const showModal = ref(false);
+const menuList = ref([]);
+const modal = ref(false);
+const type = ref("");
 
 onMounted(() => {
   console.log(route.params);
@@ -31,6 +33,26 @@ onMounted(() => {
     menu.value = res.data;
   });
 });
+async function showModal(item: object) {
+  await axios.get("http://localhost:3000/menu/").then((res) => {
+    menuList.value = res.data;
+    type.value = item.type;
+
+    // for (let item of menuList.value) {
+    //   if (item.type === type) {
+    //     selected.value = item;
+    //     return;
+    //   }
+    // }
+    modal.value = true;
+    console.log("jibai", type);
+
+    // selected.value = menu.value[0];
+  });
+
+  // console.log("asdasd", item);
+}
+
 function minusQtd() {
   if ((menu.value.quantity as number) > 0) (menu.value.quantity as number)--;
 }
@@ -46,7 +68,7 @@ function addToCart() {
 
 function confirm(item: object) {
   console.log("aaa", item.img);
-  showModal.value = false;
+  modal.value = false;
 }
 </script>
 
@@ -118,9 +140,12 @@ function confirm(item: object) {
 
         <div>
           <div class="text-sm text-gray-400 mb-2">客製化</div>
-          <div class="flex space-x-2 mb-3" @click="showModal = true">
+          <div class="flex space-x-2 mb-3">
             <div v-for="item in menu.customize">
-              <div class="w-12 h-12 border-dashed border">
+              <div
+                class="w-12 h-12 border-dashed border cursor-pointer"
+                @click="showModal(item)"
+              >
                 <img :src="item.img" class="w-12 h-12 object-cover" alt="" />
               </div>
               <p class="text-gray-500 text-xs mt-1 text-center">
@@ -151,10 +176,11 @@ function confirm(item: object) {
     </div>
     <div class="h-9"></div>
     <Modal
-      v-show="showModal"
-      :menu="menu"
+      v-show="modal"
+      :menu="menuList"
+      :type="type"
       @confirm="confirm"
-      @cancel="showModal = false"
+      @cancel="modal = false"
     ></Modal>
   </div>
 </template>

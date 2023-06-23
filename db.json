@@ -29,18 +29,18 @@
     {
       "id": 1,
       "product": "set2",
-      "price": 130,
-      "img": "../src/assets/images/combo1.png",
-      "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
+      "price": 70,
+      "img": "../src/assets/images/set2.jpg",
+      "description": "三明治",
       "type": "set",
       "quantity": 0
     },
     {
       "id": 2,
-      "product": "漢堡組合",
-      "price": 180,
-      "img": "../src/assets/images/combo1.png",
-      "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
+      "product": "pasta組合",
+      "price": 200,
+      "img": "../src/assets/images/pasta.jpg",
+      "description": "義大利麵組合",
       "type": "set",
       "quantity": 0
     },
@@ -48,8 +48,8 @@
       "id": 3,
       "product": "漢堡組合",
       "price": 180,
-      "img": "../src/assets/images/combo1.png",
-      "description": "漢堡（麵包、萵苣、培根、番茄、澳洲牛肉、特色醬）+可樂+薯條",
+      "img": "../src/assets/images/chicken.jpg",
+      "description": "炸雞組合",
       "type": "set",
       "quantity": 0
     },
