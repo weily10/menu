@@ -4,8 +4,15 @@ import { useRoute } from "vue-router";
 import router from "../router/index";
 import axios from "axios";
 import Modal from "../components/Modal.vue";
+import { useStore } from "../store/index";
 
 const route = useRoute();
+const store = useStore();
+
+const menu = ref<item>({});
+const menuList = ref([]);
+const modal = ref(false);
+const type = ref("");
 
 interface item {
   quantity?: number;
@@ -21,10 +28,8 @@ interface item {
   ];
 }
 // const cartItems = ref<item[]>([]);
-const menu = ref<item>({});
-const menuList = ref([]);
-const modal = ref(false);
-const type = ref("");
+
+// const cartItems = ref([]);
 
 onMounted(() => {
   console.log(route.params);
@@ -45,12 +50,9 @@ async function showModal(item: object) {
     //   }
     // }
     modal.value = true;
-    console.log("jibai", type);
 
     // selected.value = menu.value[0];
   });
-
-  // console.log("asdasd", item);
 }
 
 function minusQtd() {
@@ -62,12 +64,15 @@ function addsQtd() {
 
 function addToCart() {
   if (menu.value.quantity !== 0) {
-    // cartItems.value.push(menu.value.quantity);
+    const qtd = menu.value.quantity;
+    for (let i = 0; i < qtd; i++) {
+      store.increment(menu.value);
+      // cartItems.value.push(menu.value.quantity);
+    }
   }
 }
 
-function confirm(item: object) {
-  console.log("aaa", item.img);
+function confirm() {
   modal.value = false;
 }
 </script>

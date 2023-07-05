@@ -16,7 +16,7 @@
         },
         {
           "product": "薯條",
-          "type": "side",
+          "type": "solo",
           "img":"../src/assets/images/frenchfries.jpg"
         },
         {
@@ -33,11 +33,28 @@
       "img": "../src/assets/images/set2.jpg",
       "description": "三明治",
       "type": "set",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {
+          "product": "三明治",
+          "img": "../src/assets/images/set2.jpg",
+          "type": "main"
+        },
+        {
+          "product": "薯條",
+          "type": "solo",
+          "img": "../src/assets/images/frenchfries.jpg"
+        },
+        {
+          "product": "可樂",
+          "type": "drinks",
+          "img": "../src/assets/images/cocacola.jpg"
+        }
+      ]
     },
     {
       "id": 2,
-      "product": "pasta組合",
+      "product": "pasta套餐",
       "price": 200,
       "img": "../src/assets/images/pasta.jpg",
       "description": "義大利麵組合",
@@ -46,7 +63,7 @@
     },
     {
       "id": 3,
-      "product": "漢堡組合",
+      "product": "炸雞套餐",
       "price": 180,
       "img": "../src/assets/images/chicken.jpg",
       "description": "炸雞組合",
@@ -105,6 +122,15 @@
       "img": "../src/assets/images/nuggets.png",
       "description": "",
       "type": "solo",
+      "quantity": 0
+    },
+    {
+      "id": 10,
+      "product": "薯條",
+      "type": "solo",
+      "price": 50,
+      "img": "../src/assets/images/frenchfries.jpg",
+      "description": "",
       "quantity": 0
     }
   ]

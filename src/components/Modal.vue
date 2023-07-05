@@ -6,6 +6,13 @@ defineProps({
   type: String,
   menu: Array,
 });
+
+function titleChange(type: string) {
+  if (type == "drinks") return "選擇飲料";
+  if (type == "side") return "選擇點心";
+
+  return "選擇";
+}
 </script>
 
 <template>
@@ -16,7 +23,9 @@ defineProps({
       >
         <div>
           <div class="text-center p-3 flex-auto justify-center leading-6">
-            <h2 class="text-2xl font-bold py-4">選擇飲料</h2>
+            <h2 class="text-2xl font-bold py-4">
+              {{ titleChange(type as string) }}
+            </h2>
           </div>
           <div class="flex justify-center">
             <div v-for="item in menu">

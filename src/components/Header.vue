@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useStore } from "../store/index";
 
-defineProps(['modelValue'])
-defineEmits(['update:modelValue'])
+defineProps(["modelValue"]);
+defineEmits(["update:modelValue"]);
+
+const store = useStore();
+const items = store.items;
 
 const show = ref(false);
 const showSearchbar = () => {
@@ -12,9 +16,7 @@ const showSearchbar = () => {
     show.value = false;
   }
 };
-function showCartItems() {
-
-}
+function showCartItems() {}
 </script>
 <template>
   <div>
@@ -25,13 +27,15 @@ function showCartItems() {
       <div class="flex items-center">
         <div class="mx-3">
           <button type="button" class="text-white" @click="showSearchbar">
-            <img src="../assets/icons/magnifier.svg" alt="">
+            <img src="../assets/icons/magnifier.svg" alt="" />
             <span class="sr-only">Icon description</span>
           </button>
         </div>
         <div class="mx-3">
-          <div class="leading-none  text-center py-1 px-[6px] bg-red-600 rounded-full absolute right-3 top-[6px]  text-white text-[6pt]">
-              12
+          <div
+            class="leading-none text-center py-1 px-[6px] bg-red-600 rounded-full absolute right-3 top-[6px] text-white text-[6pt]"
+          >
+            {{ items.length }}
           </div>
           <button type="button" class="text-white" @click="showCartItems">
             <p>
@@ -48,9 +52,22 @@ function showCartItems() {
           <label for="simple-search" class="sr-only">Search</label>
 
           <div class="relative w-full">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"></div>
-            <input :value="modelValue" @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-              type="text" id="simple-search" class="border-primary" placeholder="查詢" />
+            <div
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            ></div>
+            <input
+              :value="modelValue"
+              @input="
+                $emit(
+                  'update:modelValue',
+                  ($event.target as HTMLInputElement).value
+                )
+              "
+              type="text"
+              id="simple-search"
+              class="border-primary"
+              placeholder="查詢"
+            />
           </div>
           <!-- <button
             class="btn-primary ml-3"
@@ -65,4 +82,4 @@ function showCartItems() {
   </div>
 </template>
 
-<style ></style>
+<style></style>
