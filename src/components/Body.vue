@@ -43,7 +43,7 @@ function goToProductPage(item: any) {
 <template>
   <div>
     <hr class="border-t border-solid" />
-    <div class="flex mt-3 mx-3 pb-3 flex-wrap overflow-x-scroll">
+    <div class="flex mt-3 mx-3 pb-3 flex-wrap overflow-x-scroll border-b">
       <ul class="flex space-x-3">
         <li v-for="(item, index) in items" :key="index + 'index'">
           <input
@@ -70,7 +70,7 @@ function goToProductPage(item: any) {
       >
         <div
           v-if="radioVar == item.type"
-          class="bg-white border border-gray-200 rounded-lg shadow mb-3"
+          class="bg-white border-b border-gray-200"
         >
           <div class="flex p-3">
             <div class="w-1/2">

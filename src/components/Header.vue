@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useStore } from "../store/index";
+import router from "../router/index";
 
 defineProps(["modelValue"]);
-defineEmits(["update:modelValue"]);
 
 const store = useStore();
 const items = store.items;
 
 const show = ref(false);
+
 const showSearchbar = () => {
   if (!show.value) {
     show.value = true;
@@ -16,7 +17,12 @@ const showSearchbar = () => {
     show.value = false;
   }
 };
-function showCartItems() {}
+
+function goToItemsPages() {
+  router.push({
+    name: "CartPage",
+  });
+}
 </script>
 <template>
   <div>
@@ -37,7 +43,7 @@ function showCartItems() {}
           >
             {{ items.length }}
           </div>
-          <button type="button" class="text-white" @click="showCartItems">
+          <button type="button" class="text-white" @click="goToItemsPages">
             <p>
               <img src="../assets/icons/cart.svg" alt="" />
             </p>
