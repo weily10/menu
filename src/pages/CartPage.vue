@@ -1,13 +1,33 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useStore } from "../store/index";
+import router from "../router/index";
+
 const store = useStore();
 const items = store.items;
+
+const filteredItems = computed(() => {
+  const filteredArray = [];
+  for (let i = 0; i < items.length; i++) {
+    if (filteredArray.map((e) => e.product).indexOf(items[i].product) === -1) {
+      filteredArray.push(items[i]);
+    }
+  }
+  return filteredArray;
+});
 </script>
 
 <template>
   <div>
-    <div v-for="(item, index) in items" :key="index + 'index'">
+    <div class="mx-3 mt-3">
+      <button
+        class="text-sm rounded-lg text-white bg-gray-700 w-22 flex py-2 px-3"
+        @click="router.go(-1)"
+      >
+        <p class="self-center text-xs">返回</p>
+      </button>
+    </div>
+    <div v-for="(item, index) in filteredItems" :key="index + 'index'">
       <div
         class="bg-white border-b border-gray-200"
         v-if="index === 0 || items[index] != items[index - 1]"

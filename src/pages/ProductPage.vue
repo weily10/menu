@@ -84,7 +84,7 @@ function confirm() {
         class="text-sm rounded-lg text-white bg-gray-700 w-22 flex py-2 px-3"
         @click="router.go(-1)"
       >
-        <p class="self-center text-xs">上一頁</p>
+        <p class="self-center text-xs">返回</p>
       </button>
     </div>
 
