@@ -43,7 +43,9 @@ function goToProductPage(item: any) {
 <template>
   <div>
     <hr class="border-t border-solid" />
-    <div class="flex mt-3 mx-3 pb-3 flex-wrap overflow-x-scroll border-b">
+    <div
+      class="flex mt-3 mx-3 pb-3 flex-wrap overflow-x-scroll border-b bg-white"
+    >
       <ul class="flex space-x-3">
         <li v-for="(item, index) in items" :key="index + 'index'">
           <input

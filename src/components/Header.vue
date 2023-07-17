@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useStore } from "../store/index";
+import { computed } from "vue";
 import router from "../router/index";
 
 defineProps(["modelValue"]);
@@ -10,6 +11,11 @@ const items = store.items;
 
 const show = ref(false);
 
+const switchColor = computed(() => {
+  return items.length <= 0
+    ? "leading-none text-center py-1 px-[6px] bg-red-200 rounded-full absolute right-3 top-[6px] text-white text-[6pt]"
+    : "";
+});
 const showSearchbar = () => {
   if (!show.value) {
     show.value = true;
@@ -23,6 +29,8 @@ function goToItemsPages() {
     name: "CartPage",
   });
 }
+
+console.log(switchColor);
 </script>
 <template>
   <div>
@@ -43,7 +51,12 @@ function goToItemsPages() {
           >
             {{ items.length }}
           </div>
-          <button type="button" class="text-white" @click="goToItemsPages">
+          <button
+            type="button"
+            class="text-white"
+            @click="goToItemsPages"
+            :disabled="items.length <= 0"
+          >
             <p>
               <img src="../assets/icons/cart.svg" alt="" />
             </p>
@@ -75,13 +88,6 @@ function goToItemsPages() {
               placeholder="查詢"
             />
           </div>
-          <!-- <button
-            class="btn-primary ml-3"
-            @click="$emit('showResult')"
-          >
-            查詢
-            <span class="sr-only">Search</span>
-          </button> -->
         </div>
       </div>
     </div>

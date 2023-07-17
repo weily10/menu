@@ -15,7 +15,7 @@ const modal = ref(false);
 const type = ref("");
 
 interface item {
-  quantity?: number;
+  quantity: number;
   img?: string;
   product?: string;
   description?: string;
@@ -32,10 +32,9 @@ interface item {
 // const cartItems = ref([]);
 
 onMounted(() => {
-  console.log(route.params);
-
   axios.get("http://localhost:3000/menu/" + route.params.id).then((res) => {
     menu.value = res.data;
+    menu.value.quantity = 1;
   });
 });
 async function showModal(item: object) {
@@ -69,6 +68,7 @@ function addToCart() {
       store.increment(menu.value);
       // cartItems.value.push(menu.value.quantity);
     }
+    router.push("/cartPage");
   }
 }
 
@@ -79,7 +79,7 @@ function confirm() {
 
 <template>
   <div class="h-screen">
-    <div class="absolute mx-6 mt-3">
+    <div class="absolute mx-3 mt-3">
       <button
         class="text-sm rounded-lg text-white bg-gray-700 w-22 flex py-2 px-3"
         @click="router.go(-1)"
@@ -89,7 +89,7 @@ function confirm() {
     </div>
 
     <div>
-      <img :src="menu.img" alt="" />
+      <img :src="menu.img" alt="" class="object-cover w-full h-[40vh]" />
     </div>
     <div class="rounded-lg bg-white w-full p-6">
       <div class="flex flex-col space-y-2">
@@ -133,9 +133,10 @@ function confirm() {
                 v-model="menu.quantity"
               />
               <button
+                :disabled="menu.quantity <= 1"
                 @click="minusQtd()"
                 type="submit"
-                class="absolute top-0 left-0 px-2.5 text-sm text-white bg-slate-600 rounded-l-lg border border-gray-600 h-[33px]"
+                class="disabled:bg-gray-200 absolute top-0 left-0 px-2.5 text-sm text-white bg-slate-600 rounded-l-lg border border-gray-600 h-[33px]"
               >
                 <span>-</span>
               </button>
@@ -144,7 +145,7 @@ function confirm() {
         </div>
 
         <div>
-          <div class="text-sm text-gray-400 mb-2">客製化</div>
+          <div class="text-sm text-gray-400 mb-2">選擇您的組合</div>
           <div class="flex space-x-2 mb-3">
             <div v-for="item in menu.customize">
               <div

@@ -34,7 +34,6 @@ watch(keyword, (newKeyword) => {
     <div class="text-sm">
       <Header v-model="keyword"></Header>
       <Body :menu="menu"></Body>
-      <Footer @finishOrder=""></Footer>
     </div>
     <router-view />
   </main>
