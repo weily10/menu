@@ -64,42 +64,42 @@ function goToProductPage(item: any) {
       </ul>
     </div>
 
-    <div class="mx-3 text-sm">
-      <div
-        v-for="(item, index) in menu"
-        :key="index + 'index'"
-        @click="goToProductPage(item)"
-      >
+    <div class="mx-3 text-sm md:flex md:flex-wrap">
+      <template v-for="(item, index) in menu">
         <div
+          :key="index + 'index'"
+          @click="goToProductPage(item)"
           v-if="radioVar == item.type"
-          class="bg-white border-b border-gray-200"
+          class="md:basis-1/2 md:pr-2"
         >
-          <div class="flex p-3">
-            <div class="w-1/2">
-              <img :src="item.img" class="w-full h-[136px] object-cover" />
-            </div>
-            <div
-              class="ml-3 space-y-3 w-1/2 h-[136px] flex flex-col justify-between"
-            >
-              <div>
-                <div class="flex justify-between">
-                  <p class="font-semibold text-gray-600">
-                    {{ item.product }}
+          <div class="bg-white border-gray-200">
+            <div class="flex p-3">
+              <div class="w-1/2">
+                <img :src="item.img" class="w-full h-[136px] object-cover" />
+              </div>
+              <div
+                class="ml-3 space-y-3 w-1/2 h-[136px] flex flex-col justify-between"
+              >
+                <div>
+                  <div class="flex justify-between">
+                    <p class="font-semibold text-gray-600">
+                      {{ item.product }}
+                    </p>
+                  </div>
+                  <div class="text-xs text-gray-400 mt-3 overflow-auto h-12">
+                    {{ item.description }}
+                  </div>
+                </div>
+                <div>
+                  <p class="text-orange-500 text-base">
+                    <b>{{ item.price }} 元</b>
                   </p>
                 </div>
-                <div class="text-xs text-gray-400 mt-3 overflow-auto h-12">
-                  {{ item.description }}
-                </div>
-              </div>
-              <div>
-                <p class="text-orange-500 text-base">
-                  <b>{{ item.price }} 元</b>
-                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </template>
     </div>
   </div>
 </template>
