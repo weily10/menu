@@ -16,7 +16,7 @@ defineProps<{
 
 const items = ref([
   { id: "set", name: "套餐" },
-  { id: "breakfast", name: "主食" },
+  { id: "main", name: "主食" },
   { id: "drinks", name: "飲料" },
   { id: "solo", name: "單點" },
   { id: "sweets", name: "甜點" },
@@ -38,6 +38,14 @@ function goToProductPage(item: any) {
     name: "Product",
     params: { id: product.id },
   });
+}
+
+function typeMod(radioVar: string, type: string) {
+  if (type !== "hamburger" && type !== "sandwich") {
+    return radioVar === type;
+  } else {
+    return radioVar === "main";
+  }
 }
 </script>
 <template>
@@ -69,7 +77,7 @@ function goToProductPage(item: any) {
         <div
           :key="index + 'index'"
           @click="goToProductPage(item)"
-          v-if="radioVar == item.type"
+          v-if="typeMod(radioVar, item.type)"
           class="md:basis-1/2 md:pr-2"
         >
           <div class="bg-white border-gray-200">
