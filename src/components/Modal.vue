@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
-const selected = ref({});
 defineProps({
   type: String,
   menu: Array,
@@ -9,9 +6,18 @@ defineProps({
 
 function titleChange(type: string) {
   if (type == "drinks") return "選擇飲料";
-  if (type == "side") return "選擇點心";
+  if (type == "solo") return "選擇點心";
+  if (type == "main") return "加購選擇";
 
   return "選擇";
+}
+
+function typeMod(itemType: string, type: string) {
+  if (type !== "main") {
+    return itemType === type;
+  } else {
+    return itemType === "main";
+  }
 }
 </script>
 
@@ -28,8 +34,8 @@ function titleChange(type: string) {
             </h2>
           </div>
           <div class="flex justify-center">
-            <div v-for="item in menu">
-              <div v-if="item.type == type" class="w-12 m-3 text-center">
+            <div v-for="item in menu" :key="item.id">
+              <div v-if="typeMod(item.type, type)" class="w-12 m-3 text-center">
                 <div class="w-12 align-center">
                   <label>
                     <input

@@ -27,9 +27,6 @@ interface item {
     }
   ];
 }
-// const cartItems = ref<item[]>([]);
-
-// const cartItems = ref([]);
 
 onMounted(() => {
   axios.get("http://localhost:3000/menu/" + route.params.id).then((res) => {
@@ -41,16 +38,7 @@ async function showModal(item: object) {
   await axios.get("http://localhost:3000/menu/").then((res) => {
     menuList.value = res.data;
     type.value = item.type;
-
-    // for (let item of menuList.value) {
-    //   if (item.type === type) {
-    //     selected.value = item;
-    //     return;
-    //   }
-    // }
     modal.value = true;
-
-    // selected.value = menu.value[0];
   });
 }
 
@@ -72,7 +60,15 @@ function addToCart() {
   }
 }
 
-function confirm() {
+function confirm(selected: object) {
+  if (selected) {
+    const index = menu.value.customize.findIndex(
+      (item) => item.type === selected.type
+    );
+    menu.value.customize.splice(index, 1, selected);
+  }
+  console.log(menu);
+
   modal.value = false;
 }
 </script>
@@ -145,7 +141,7 @@ function confirm() {
         </div>
 
         <div>
-          <div class="text-sm text-gray-400 mb-2">選擇您的組合</div>
+          <div class="text-sm text-gray-400 mb-2">客製化</div>
           <div class="flex space-x-2 mb-3">
             <div v-for="item in menu.customize">
               <div
@@ -154,7 +150,7 @@ function confirm() {
               >
                 <img :src="item.img" class="w-12 h-12 object-cover" alt="" />
               </div>
-              <p class="text-gray-500 text-xs mt-1 text-center">
+              <p class="text-gray-500 text-xs mt-1 text-center w-12">
                 {{ item.product }}
               </p>
             </div>

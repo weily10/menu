@@ -11,18 +11,26 @@
       "customize": [
         {
           "product": "牛肉漢堡",
-          "type":"main",
-          "img":"../src/assets/images/hamburger1.jpg"
+          "type": "hamburger",
+          "img": "../src/assets/images/hamburger1.jpg"
+         
         },
         {
           "product": "薯條",
           "type": "solo",
-          "img":"../src/assets/images/frenchfries.jpg"
+          "img": "../src/assets/images/frenchfries.jpg"
         },
         {
+          "id": 8,
           "product": "可樂",
+          "price": 50,
           "type": "drinks",
-          "img": "../src/assets/images/cocacola.jpg"
+          "img": "../src/assets/images/cocacola.jpg",
+          "description": "",
+          "quantity": 0,
+          "customize": [
+            {}
+          ]
         }
       ]
     },
@@ -38,7 +46,7 @@
         {
           "product": "三明治",
           "img": "../src/assets/images/set2.jpg",
-          "type": "main"
+          "type": "sandwich"
         },
         {
           "product": "薯條",
@@ -59,7 +67,24 @@
       "img": "../src/assets/images/pasta.jpg",
       "description": "義大利麵組合",
       "type": "set",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {
+          "product": "義大利麵",
+          "img": "../src//assets/images/spaghetti.jpeg",
+          "type": "spaghetti"
+        },
+        {
+          "product": "薯條",
+          "type": "solo",
+          "img": "../src/assets/images/frenchfries.jpg"
+        },
+        {
+          "product": "可樂",
+          "type": "drinks",
+          "img": "../src/assets/images/cocacola.jpg"
+        }
+      ]
     },
     {
       "id": 3,
@@ -68,16 +93,22 @@
       "img": "../src/assets/images/chicken.jpg",
       "description": "炸雞組合",
       "type": "set",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
     },
     {
       "id": 4,
-      "product": "漢堡",
+      "product": "牛肉漢堡",
       "price": 102,
-      "img": "../src/assets/images/hamburger.png",
+      "img": "../src/assets/images/hamburger1.jpg",
       "description": "麵包、萵苣、培根、番茄、澳洲牛肉、特色醬",
-      "type": "breakfast",
-      "quantity": 0
+      "type": "hamburger",
+      "quantity": 0,
+      "customize": [
+      
+      ]
     },
     {
       "id": 5,
@@ -85,8 +116,11 @@
       "price": 60,
       "img": "../src/assets/images/sandwich.png",
       "description": "白吐司、起司、火腿",
-      "type": "breakfast",
-      "quantity": 0
+      "type": "sandwich",
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
     },
     {
       "id": 6,
@@ -94,8 +128,11 @@
       "price": 160,
       "img": "../src//assets/images/spaghetti.jpeg",
       "description": "麵、起司、火腿",
-      "type": "breakfast",
-      "quantity": 0
+      "type": "spaghetti",
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
     },
     {
       "id": 7,
@@ -104,7 +141,10 @@
       "img": "../src/assets/images/milktea.png",
       "description": "",
       "type": "drinks",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
     },
     {
       "id": 8,
@@ -113,7 +153,10 @@
       "type": "drinks",
       "img": "../src/assets/images/cocacola.jpg",
       "description": "",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
     },
     {
       "id": 9,
@@ -122,7 +165,10 @@
       "img": "../src/assets/images/nuggets.png",
       "description": "",
       "type": "solo",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
     },
     {
       "id": 10,
@@ -131,7 +177,34 @@
       "price": 50,
       "img": "../src/assets/images/frenchfries.jpg",
       "description": "",
-      "quantity": 0
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
+    },
+    {
+      "id": 11,
+      "product": "angus漢堡",
+      "type": "hamburger",
+      "price": 100,
+      "img": "../src/assets/images/hamburger.png",
+      "description": "",
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
+    },
+    {
+      "id": 12,
+      "product": "培根",
+      "type": "add",
+      "price": 40,
+      "img": "../src/assets/images/frenchfries.jpg",
+      "description": "",
+      "quantity": 0,
+      "customize": [
+        {}
+      ]
     }
   ]
 }
