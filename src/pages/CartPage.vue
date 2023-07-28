@@ -9,22 +9,17 @@ function changeLabel(i: object) {
   if (i.type === "hamburger" || i.type === "sandwich") return "主餐：";
   if (i.type === "solo") return "加點：";
   if (i.type === "drinks") return "飲料：";
+  if (i.type === "comment") return "備註";
 }
 
 function addsQtd(order: object) {
-  order.quantity.value++;
+  order.quantity++;
 }
 
 function minusQtd(order: object) {
-  console.log("aaa", order);
-
   if (order.quantity > 1) {
     order.quantity--;
   } else {
-    console.log(
-      "aaa",
-      items.findIndex((v) => v.order.id == order.id)
-    );
     items.splice(
       items.findIndex((v) => v.order.id == order.id),
       1
@@ -59,6 +54,12 @@ function minusQtd(order: object) {
                     {{ i.product }}
                   </div>
                 </div>
+              </div>
+              <div class="text-sm font-normal text-gray-600">
+                {{ order.order.comment ? "備註：" : "" }}
+              </div>
+              <div class="text-sm text-gray-600 font-light">
+                {{ order.order.comment }}
               </div>
               <div class="flex items-center mt-2">
                 <div class="relative w-24">
@@ -95,14 +96,22 @@ function minusQtd(order: object) {
                 class="w-[80px] h-[60px] object-cover"
               />
             </div>
-            <div>
-              <p class="text-orange-500 text-base text-right">
-                <b>{{ order.order.quantity * order.order.price }} 元</b>
-              </p>
-            </div>
+            <p class="text-orange-500 text-base text-right mt-3">
+              <b>{{ order.order.quantity * order.order.price }} 元</b>
+            </p>
           </div>
         </div>
       </div>
+    </div>
+    <div class="flex m-3 justify-between">
+      <p class="tracking-widest font-medium">總結</p>
+      <p>
+        NT${{
+          items.reduce((acc, item) => {
+            return acc + item.order.quantity * item.order.price;
+          }, 0)
+        }}
+      </p>
     </div>
     <div>
       <div

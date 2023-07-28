@@ -22,6 +22,7 @@ interface item {
   product?: string;
   description?: string;
   price?: number;
+  comment?: string;
   customize?: [
     {
       img?: string;
@@ -156,8 +157,7 @@ function confirm(selected: object) {
           <div class="text-sm text-gray-400">備註</div>
           <div class="mt-2">
             <textarea
-              name=""
-              id=""
+              v-model="menu.comment"
               cols="30"
               rows="3"
               class="w-full border pl-2 pt-1"
