@@ -3,10 +3,13 @@ import { ref } from "vue";
 
 
 export const useStore = defineStore('counter', () => {
-  const items = ref([])
+  const items = ref([
+    
+  ])
 
   function increment(item:object){
-      items.value.push(item)
+      items.value.push({'order':item})
+      
   }
   return {items,increment}
 })

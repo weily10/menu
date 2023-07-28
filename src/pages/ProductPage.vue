@@ -9,7 +9,9 @@ import { useStore } from "../store/index";
 const route = useRoute();
 const store = useStore();
 
-const menu = ref<item>({});
+const menu = ref<item>({
+  quantity: 1,
+});
 const menuList = ref([]);
 const modal = ref(false);
 const type = ref("");
@@ -51,11 +53,8 @@ function addsQtd() {
 
 function addToCart() {
   if (menu.value.quantity !== 0) {
-    const qtd = menu.value.quantity;
-    for (let i = 0; i < qtd; i++) {
-      store.increment(menu.value);
-      // cartItems.value.push(menu.value.quantity);
-    }
+    store.increment(menu.value);
+
     router.push("/cartPage");
   }
 }
@@ -76,10 +75,7 @@ function confirm(selected: object) {
 <template>
   <div class="h-screen">
     <div class="absolute mx-3 mt-3">
-      <button
-        class="text-sm rounded-lg text-white bg-gray-700 w-22 flex py-2 px-3"
-        @click="router.go(-1)"
-      >
+      <button class="btn-primary" @click="router.go(-1)">
         <p class="self-center text-xs">返回</p>
       </button>
     </div>
@@ -119,22 +115,22 @@ function confirm(selected: object) {
               <button
                 @click="addsQtd()"
                 type="submit"
-                class="absolute top-0 right-0 px-2.5 text-sm text-white bg-slate-600 rounded-r-lg border border-gray-600 h-[33px]"
+                class="absolute top-0 right-0 px-2.5 text-sm text-gray-800 bg-slate-200 rounded-r-full h-[33px]"
               >
                 <span>+</span>
               </button>
               <input
                 type="number"
-                class="pl-10 border-primary h-[33px]"
+                class="pl-6 focus:outline-none w-14 h-[33px] bg-slate-200"
                 v-model="menu.quantity"
               />
               <button
                 :disabled="menu.quantity <= 1"
                 @click="minusQtd()"
                 type="submit"
-                class="disabled:bg-gray-200 absolute top-0 left-0 px-2.5 text-sm text-white bg-slate-600 rounded-l-lg border border-gray-600 h-[33px]"
+                class="absolute top-0 left-0 px-2.5 text-sm text-gray-800 bg-slate-200 rounded-l-full h-[33px]"
               >
-                <span>-</span>
+                <span v-show="menu.quantity > 1">-</span>
               </button>
             </div>
           </div>
