@@ -9,7 +9,17 @@ export const useStore = defineStore('counter', () => {
 
   function increment(item:object){
       items.value.push({'order':item})
-      
   }
-  return {items,increment}
+
+  function addQtd(order:object){
+    order.quantity++;
+  }
+   function minusQtd(order:object){
+    order.quantity --
+   }
+
+  
+
+
+  return {items,increment,addQtd,minusQtd}
 })

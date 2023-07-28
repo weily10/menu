@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
 import { useStore } from "../store/index";
 import router from "../router/index";
+
 const store = useStore();
 const items: { product?: string }[] = store.items;
 
@@ -13,18 +13,25 @@ function changeLabel(i: object) {
 }
 
 function addsQtd(order: object) {
-  order.quantity++;
+  store.addQtd(order);
 }
 
 function minusQtd(order: object) {
   if (order.quantity > 1) {
-    order.quantity--;
+    store.minusQtd(order);
   } else {
     items.splice(
       items.findIndex((v) => v.order.id == order.id),
       1
     );
   }
+}
+
+function goToCheckout() {
+  const time = new Date().getHours() + ":" + new Date().getMinutes();
+
+  localStorage.setItem("time", time);
+  router.push({ name: "CheckOut" });
 }
 </script>
 
@@ -105,11 +112,16 @@ function minusQtd(order: object) {
     </div>
     <div class="flex m-3 justify-between">
       <p class="tracking-widest font-medium">總結</p>
-      <p>
-        NT${{
-          items.reduce((acc, item) => {
-            return acc + item.order.quantity * item.order.price;
-          }, 0)
+      <p class="font-medium">
+        NT{{
+          new Intl.NumberFormat("zh-Hant", {
+            style: "currency",
+            currency: "TWD",
+          }).format(
+            items.reduce((acc, item) => {
+              return acc + item.order.quantity * item.order.price;
+            }, 0)
+          )
         }}
       </p>
     </div>
@@ -118,8 +130,8 @@ function minusQtd(order: object) {
         class="w-full shadow p-3 fixed bottom-0 bg-white flex flex-col space-y-3"
       >
         <div>
-          <button class="btn-primary w-full" @click="$emit('finishOrder')">
-            點完了，送廚房去
+          <button class="btn-primary w-full" @click="goToCheckout">
+            點完了，送廚房
           </button>
         </div>
         <div>

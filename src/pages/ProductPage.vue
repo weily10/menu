@@ -55,7 +55,6 @@ function addsQtd() {
 function addToCart() {
   if (menu.value.quantity !== 0) {
     store.increment(menu.value);
-
     router.push("/cartPage");
   }
 }
@@ -91,9 +90,9 @@ function confirm(selected: object) {
             {{ menu.product }}
           </h1>
         </div>
-        <div class="text-sm">
-          <div class="mt-2 text-gray-400">
-            <div class="text-sm">
+        <div class="gray-sm-text">
+          <div class="mt-2">
+            <div class="">
               <div class="my-3 text-justify">
                 {{ menu.description }}
               </div>
