@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import router from "../router/index";
+import Loading from "../components/Loading.vue";
 
 defineProps<{
   menu: {
@@ -12,6 +13,7 @@ defineProps<{
     type: string;
     quantity: number;
   }[];
+  loading: boolean;
 }>();
 
 const items = ref([
@@ -19,7 +21,6 @@ const items = ref([
   { id: "main", name: "主食" },
   { id: "drinks", name: "飲料" },
   { id: "solo", name: "單點" },
-  { id: "sweets", name: "甜點" },
 ]);
 const radioVar = ref("set");
 
@@ -31,10 +32,9 @@ const changeCategory = (i: any) => {
   radioVar.value = i.target.value;
   console.log("radiovar", radioVar);
 };
-function goToProductPage(item: any) {
+async function goToProductPage(item: any) {
   let product = item;
-
-  router.push({
+  await router.push({
     name: "Product",
     params: { id: product.id },
   });
@@ -73,8 +73,12 @@ function typeMod(radioVar: string, type: string) {
     </div>
 
     <div class="mx-3 text-sm md:flex md:flex-wrap">
+      <div v-show="loading" class="flex justify-center items-center h-[300px]">
+        <Loading></Loading>
+      </div>
       <template v-for="(item, index) in menu">
         <div
+          v-show="!loading"
           :key="index + 'index'"
           @click="goToProductPage(item)"
           v-if="typeMod(radioVar, item.type)"

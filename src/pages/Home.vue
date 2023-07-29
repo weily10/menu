@@ -3,9 +3,9 @@ import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import Header from "../components/Header.vue";
 import Body from "../components/Body.vue";
-import Footer from "../components/Footer.vue";
 import debounce from "../../utils/debounce";
 
+const loading = ref(true);
 const keyword = ref("");
 const menu = ref([]);
 const debounceFn = debounce((newKeyword: string) => {
@@ -19,6 +19,7 @@ const debounceFn = debounce((newKeyword: string) => {
 onMounted(async () => {
   await axios.get("http://localhost:3000/menu").then((res) => {
     menu.value = res.data;
+    loading.value = false;
   });
 });
 
@@ -33,7 +34,7 @@ watch(keyword, (newKeyword) => {
   <main>
     <div class="text-sm">
       <Header v-model="keyword"></Header>
-      <Body :menu="menu"></Body>
+      <Body :menu="menu" :loading="loading"></Body>
     </div>
     <router-view />
   </main>
