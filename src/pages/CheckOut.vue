@@ -12,6 +12,17 @@ function formatPrice(price: number) {
     currency: "TWD",
   }).format(price);
 }
+
+function total(items) {
+  return new Intl.NumberFormat("zh-Hant", {
+    style: "currency",
+    currency: "TWD",
+  }).format(
+    items.reduce((acc, item) => {
+      return acc + item.order.quantity * item.order.price;
+    }, 0)
+  );
+}
 </script>
 
 <template>
@@ -25,13 +36,11 @@ function formatPrice(price: number) {
         <div></div>
       </div>
       <div class="mt-6">
+        <div class="mt-2">桌號 1</div>
         <div class="flex space-x-2">
           <p class="gray-sm-text">送出時間</p>
           <p class="text-sm">{{ time }}</p>
         </div>
-        <div class="mt-2">桌號 1</div>
-
-        <div class="mt-3 gray-sm-text">餐點</div>
         <div
           v-for="(item, index) in items"
           :key="'index' + index"
@@ -46,6 +55,11 @@ function formatPrice(price: number) {
             </ol>
           </div>
           <div>{{ formatPrice(item.order.quantity * item.order.price) }}</div>
+        </div>
+
+        <div class="flex justify-end space-x-2 mt-2">
+          <div>總結</div>
+          <div class="text-base font-medium">{{ total(items) }}</div>
         </div>
       </div>
     </div>
