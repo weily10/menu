@@ -63,11 +63,11 @@ function addToCart() {
   }
 }
 
-function confirm(selected: object) {
+function confirm(selected: { type: string }) {
   if (selected) {
     console.log("custo", menu.value.customize);
 
-    const index = menu.value.customize?.findIndex(
+    let index: any = menu.value.customize?.findIndex(
       (item) => item.type === selected.type
     );
     menu.value.customize?.splice(index, 1, selected);
