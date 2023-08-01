@@ -1,8 +1,11 @@
 <script setup lang="ts">
-defineProps({
-  type: String,
-  menu: Array,
+import { ref } from "vue";
+const props = defineProps({
+  type: { type: String, required: true },
+  menu: Object,
 });
+
+const selected = ref("");
 
 function titleChange(type: string) {
   if (type == "drinks") return "選擇飲料";
@@ -30,11 +33,11 @@ function typeMod(itemType: string, type: string) {
         <div>
           <div class="text-center p-3 flex-auto justify-center leading-6">
             <h2 class="text-2xl font-bold py-4">
-              {{ titleChange(type as string) }}
+              {{ titleChange(props.type) }}
             </h2>
           </div>
           <div class="flex justify-center">
-            <div v-for="item in menu" :key="item.id">
+            <div v-for="(item, index) in menu" :key="'index' + index">
               <div v-if="typeMod(item.type, type)" class="w-12 m-3 text-center">
                 <div class="w-12 align-center">
                   <label>

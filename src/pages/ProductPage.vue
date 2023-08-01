@@ -27,6 +27,7 @@ interface item {
   comment?: string;
   customize?: [
     {
+      type?: string;
       img?: string;
       product?: string;
     }
@@ -64,10 +65,12 @@ function addToCart() {
 
 function confirm(selected: object) {
   if (selected) {
-    const index = menu.value.customize.findIndex(
+    console.log("custo", menu.value.customize);
+
+    const index = menu.value.customize?.findIndex(
       (item) => item.type === selected.type
     );
-    menu.value.customize.splice(index, 1, selected);
+    menu.value.customize?.splice(index, 1, selected);
   }
 
   modal.value = false;

@@ -54,10 +54,5 @@ defineProps<{
         </div>
       </div>
     </div>
-
-    <div
-      class="bg-black w-full h-full absolute z-10 top-0 opacity-5"
-      @click="bgClick"
-    ></div>
   </div>
 </template>
