@@ -3,9 +3,19 @@ import { useStore } from "../store/index";
 import router from "../router/index";
 
 const store = useStore();
-const items: { product?: string }[] = store.items;
+const items: {
+  order: {
+    img: string;
+    price: number;
+    quantity: number;
+    comment: string;
+    id: string;
+    product: string;
+    customize: [{ product: string; type: string }];
+  };
+}[] = store.items;
 
-function changeLabel(i: object) {
+function changeLabel(i: { type: string }) {
   if (i.type === "hamburger" || i.type === "sandwich") return "主餐：";
   if (i.type === "solo") return "加點：";
   if (i.type === "drinks") return "飲料：";
@@ -16,7 +26,7 @@ function addsQtd(order: object) {
   store.addQtd(order);
 }
 
-function minusQtd(order: object) {
+function minusQtd(order: { quantity: number; id: string }) {
   if (order.quantity > 1) {
     store.minusQtd(order);
   } else {
@@ -52,7 +62,10 @@ function goToCheckout() {
               </p>
             </div>
             <div>
-              <div v-for="i in order.order.customize">
+              <div
+                v-for="(i, index) in order.order.customize"
+                :key="'index' + index"
+              >
                 <div class="text-sm">
                   <div class="font-normal text-gray-600">
                     {{ changeLabel(i) }}

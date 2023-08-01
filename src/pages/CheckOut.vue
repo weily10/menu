@@ -3,7 +3,17 @@ import { useStore } from "../store/index";
 import router from "../router/index";
 
 const store = useStore();
-const items: { product?: string }[] = store.items;
+const items: {
+  order: {
+    price: number;
+    product: string;
+    quantity: number;
+    customize: [{ product: string }];
+  };
+}[] = store.items;
+
+console.log(typeof items);
+
 const time = localStorage.getItem("time");
 
 function formatPrice(price: number) {
@@ -13,14 +23,17 @@ function formatPrice(price: number) {
   }).format(price);
 }
 
-function total(items) {
+function total(items: []) {
   return new Intl.NumberFormat("zh-Hant", {
     style: "currency",
     currency: "TWD",
   }).format(
-    items.reduce((acc, item) => {
-      return acc + item.order.quantity * item.order.price;
-    }, 0)
+    items.reduce(
+      (acc: number, item: { order: { quantity: number; price: number } }) => {
+        return acc + item.order.quantity * item.order.price;
+      },
+      0
+    )
   );
 }
 </script>
