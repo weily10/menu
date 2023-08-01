@@ -11,14 +11,14 @@ const route = useRoute();
 const store = useStore();
 const loading = ref(true);
 
-const menu = ref<item>({
+const menu = ref<Item>({
   quantity: 1,
 });
 const menuList = ref([]);
 const modal = ref(false);
 const type = ref("");
 
-interface item {
+interface Item {
   quantity: number;
   img?: string;
   product?: string;
@@ -27,9 +27,9 @@ interface item {
   comment?: string;
   customize?: [
     {
-      type?: string;
-      img?: string;
-      product?: string;
+      type: string;
+      img: string;
+      product: string;
     }
   ];
 }
@@ -41,7 +41,7 @@ onMounted(() => {
     loading.value = false;
   });
 });
-async function showModal(item: object) {
+async function showModal(item: { type: string; img: string; product: string }) {
   await axios.get("http://localhost:3000/menu/").then((res) => {
     menuList.value = res.data;
     type.value = item.type;
@@ -63,7 +63,7 @@ function addToCart() {
   }
 }
 
-function confirm(selected: { type: string }) {
+function confirm(selected: { type: string; img: string; product: string }) {
   if (selected) {
     console.log("custo", menu.value.customize);
 
@@ -148,7 +148,10 @@ function confirm(selected: { type: string }) {
           <div>
             <div class="text-sm text-gray-400 mb-2">客製化</div>
             <div class="flex space-x-2 mb-3">
-              <div v-for="item in menu.customize">
+              <div
+                v-for="(item, index) in menu.customize"
+                :key="'index' + index"
+              >
                 <div
                   class="w-12 h-12 border-dashed border cursor-pointer"
                   @click="showModal(item)"
