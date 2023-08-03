@@ -3,17 +3,7 @@ import { useStore } from "../store/index";
 import router from "../router/index";
 
 const store = useStore();
-const items: {
-  order: {
-    img: string;
-    price: number;
-    quantity: number;
-    comment: string;
-    id: string;
-    product: string;
-    customize: [{ product: string; type: string }];
-  };
-}[] = store.items;
+const items: { product?: string }[] = store.items;
 
 function changeLabel(i: { type: string }) {
   if (i.type === "hamburger" || i.type === "sandwich") return "主餐：";
@@ -58,14 +48,11 @@ function goToCheckout() {
           <div class="space-y-3 w-1/2 flex flex-col justify-between">
             <div class="flex">
               <p class="font-semibold text-gray-600">
-                {{ order.order.product }}
+                {{ order.product }}
               </p>
             </div>
             <div>
-              <div
-                v-for="(i, index) in order.order.customize"
-                :key="'index' + index"
-              >
+              <div v-for="(i, index) in order.customize" :key="'index' + index">
                 <div class="text-sm">
                   <div class="font-normal text-gray-600">
                     {{ changeLabel(i) }}
@@ -76,15 +63,15 @@ function goToCheckout() {
                 </div>
               </div>
               <div class="text-sm font-normal text-gray-600">
-                {{ order.order.comment ? "備註：" : "" }}
+                {{ order.comment ? "備註：" : "" }}
               </div>
               <div class="text-sm text-gray-600 font-light">
-                {{ order.order.comment }}
+                {{ order.comment }}
               </div>
               <div class="flex items-center mt-2">
                 <div class="relative w-24">
                   <button
-                    @click="addsQtd(order.order)"
+                    @click="addsQtd(order)"
                     type="submit"
                     class="absolute top-0 right-0 px-2.5 text-sm text-gray-800 bg-slate-200 rounded-r-full h-[33px]"
                   >
@@ -93,15 +80,15 @@ function goToCheckout() {
                   <input
                     type="number"
                     class="pl-8 ml-3 focus:outline-none w-14 h-[33px] bg-slate-200"
-                    v-model="order.order.quantity"
+                    v-model="order.quantity"
                   />
                   <button
-                    @click="minusQtd(order.order)"
+                    @click="minusQtd(order)"
                     type="submit"
                     class="absolute top-0 left-0 px-2.5 text-sm text-gray-800 bg-slate-200 rounded-l-full h-[33px]"
                   >
-                    <span v-show="order.order.quantity > 1">-</span>
-                    <span v-show="order.order.quantity <= 1"
+                    <span v-show="order.quantity > 1">-</span>
+                    <span v-show="order.quantity <= 1"
                       ><img src="../assets/icons/trash.svg" alt=""
                     /></span>
                   </button>
@@ -111,13 +98,10 @@ function goToCheckout() {
           </div>
           <div class="flex flex-col justify-between">
             <div>
-              <img
-                :src="order.order.img"
-                class="w-[80px] h-[60px] object-cover"
-              />
+              <img :src="order.img" class="w-[80px] h-[60px] object-cover" />
             </div>
             <p class="text-orange-500 text-base text-right mt-3">
-              <b>{{ order.order.quantity * order.order.price }} 元</b>
+              <b>{{ order.quantity * order.price }} 元</b>
             </p>
           </div>
         </div>
@@ -132,7 +116,7 @@ function goToCheckout() {
             currency: "TWD",
           }).format(
             items.reduce((acc, item) => {
-              return acc + item.order.quantity * item.order.price;
+              return acc + item.quantity * item.price;
             }, 0)
           )
         }}

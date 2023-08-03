@@ -12,8 +12,6 @@ const items: {
   };
 }[] = store.items;
 
-console.log(typeof items);
-
 const time = localStorage.getItem("time");
 
 function formatPrice(price: number) {
@@ -28,12 +26,9 @@ function total(items: []) {
     style: "currency",
     currency: "TWD",
   }).format(
-    items.reduce(
-      (acc: number, item: { order: { quantity: number; price: number } }) => {
-        return acc + item.order.quantity * item.order.price;
-      },
-      0
-    )
+    items.reduce((acc: number, item: { quantity: number; price: number }) => {
+      return acc + item.quantity * item.price;
+    }, 0)
   );
 }
 </script>
@@ -60,14 +55,14 @@ function total(items: []) {
           class="flex mt-3 pb-3 justify-between items-end bg-white border-b border-gray-200"
         >
           <div>
-            <p>{{ item.order.quantity }}x {{ item.order.product }}</p>
+            <p>{{ item.quantity }}x {{ item.product }}</p>
             <ol class="list-decimal ml-9 text-sm">
-              <li v-for="i in item.order.customize">
+              <li v-for="i in item.customize">
                 {{ i.product }}
               </li>
             </ol>
           </div>
-          <div>{{ formatPrice(item.order.quantity * item.order.price) }}</div>
+          <div>{{ formatPrice(item.quantity * item.price) }}</div>
         </div>
 
         <div class="flex justify-end space-x-2 mt-2">

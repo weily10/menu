@@ -3,12 +3,10 @@ import { ref } from "vue";
 
 
 export const useStore = defineStore('counter', () => {
-  const items = ref([
-    {}
-  ])
+  const items = ref([])
 
   function increment(item:object){
-      items.value.push({'order':item})
+      items.value.push(item)
   }
 
   function addQtd(order:{quantity:number}){
