@@ -11,28 +11,10 @@ const route = useRoute();
 const store = useStore();
 const loading = ref(true);
 
-const menu = ref<Item>({
-  quantity: 1,
-});
+const menu = ref();
 const menuList = ref([]);
 const modal = ref(false);
 const type = ref("");
-
-interface Item {
-  quantity: number;
-  img?: string;
-  product?: string;
-  description?: string;
-  price?: number;
-  comment?: string;
-  customize?: [
-    {
-      type: string;
-      img: string;
-      product: string;
-    }
-  ];
-}
 
 onMounted(() => {
   axios.get("http://localhost:3000/menu/" + route.params.id).then((res) => {
@@ -65,10 +47,8 @@ function addToCart() {
 
 function confirm(selected: { type: string; img: string; product: string }) {
   if (selected) {
-    console.log("custo", menu.value.customize);
-
     let index: any = menu.value.customize?.findIndex(
-      (item) => item.type === selected.type
+      (item: { type: string }) => item.type === selected.type
     );
     menu.value.customize?.splice(index, 1, selected);
   }

@@ -3,6 +3,7 @@ import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 import Header from "../components/Header.vue";
 import Body from "../components/Body.vue";
+//@ts-ignore
 import debounce from "../../utils/debounce";
 
 const loading = ref(true);

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useStore } from "../store/index";
 import router from "../router/index";
+import Item from "../global/types";
 
 const store = useStore();
-const items: { product?: string }[] = store.items;
+
+const items: Item[] = store.items;
 
 function changeLabel(i: { type: string }) {
   if (i.type === "hamburger" || i.type === "sandwich") return "主餐：";
@@ -12,16 +14,16 @@ function changeLabel(i: { type: string }) {
   if (i.type === "comment") return "備註";
 }
 
-function addsQtd(order: object) {
+function addsQtd(order: Item) {
   store.addQtd(order);
 }
 
-function minusQtd(order: { quantity: number; id: string }) {
+function minusQtd(order: Item) {
   if (order.quantity > 1) {
     store.minusQtd(order);
   } else {
     items.splice(
-      items.findIndex((v) => v.order.id == order.id),
+      items.findIndex((v) => v.id == order.id),
       1
     );
   }

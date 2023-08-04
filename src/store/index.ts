@@ -1,19 +1,21 @@
 import { defineStore } from 'pinia'
-import { ref } from "vue";
+import { ref,Ref } from "vue";
+import Item from '../global/types.ts';
 
 
 export const useStore = defineStore('counter', () => {
-  const items = ref([])
+  
+  const items : Ref<Item[]>=ref([])
 
-  function increment(item:object){
+  function increment(item:Item){
       items.value.push(item)
   }
 
-  function addQtd(order:{quantity:number}){
+  function addQtd(order:Item){
     order.quantity++;
   }
-   function minusQtd(order:{quantity:number}){
-    order.quantity --
+   function minusQtd(order:Item){
+    order.quantity--
    }
 
   

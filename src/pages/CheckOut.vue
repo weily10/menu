@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { useStore } from "../store/index";
 import router from "../router/index";
+import Item from "../global/types";
 
 const store = useStore();
-const items: {
-  order: {
-    price: number;
-    product: string;
-    quantity: number;
-    customize: [{ product: string }];
-  };
-}[] = store.items;
+
+let items = store.items;
 
 const time = localStorage.getItem("time");
 
@@ -21,7 +16,7 @@ function formatPrice(price: number) {
   }).format(price);
 }
 
-function total(items: []) {
+function total(items: Item[]) {
   return new Intl.NumberFormat("zh-Hant", {
     style: "currency",
     currency: "TWD",
