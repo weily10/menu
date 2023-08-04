@@ -18,8 +18,10 @@ const debounceFn = debounce((newKeyword: string) => {
 }, 1000);
 
 onMounted(async () => {
-  await axios.get("http://localhost:3000/menu").then((res) => {
-    menu.value = res.data;
+  await axios.get(".netlify/functions/query").then((res) => {
+    console.log("aaa", res.data.menu);
+
+    menu.value = res.data.menu;
     loading.value = false;
   });
 });
