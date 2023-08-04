@@ -1,4 +1,4 @@
-import myJson from '../db.json'
+import myJson from './db.json'
 
 
 exports.handler = async function(event,context){
