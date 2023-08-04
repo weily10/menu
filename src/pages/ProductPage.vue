@@ -17,14 +17,16 @@ const modal = ref(false);
 const type = ref("");
 
 onMounted(() => {
-  axios.get("http://localhost:3000/menu/" + route.params.id).then((res) => {
+  console.log(".netlify/functions/query" + route.params.id);
+
+  axios.get(".netlify/functions/query" + route.params.id).then((res) => {
     menu.value = res.data;
     menu.value.quantity = 1;
     loading.value = false;
   });
 });
 async function showModal(item: { type: string; img: string; product: string }) {
-  await axios.get("http://localhost:3000/menu/").then((res) => {
+  await axios.get(".netlify/functions/query").then((res) => {
     menuList.value = res.data;
     type.value = item.type;
     modal.value = true;

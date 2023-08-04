@@ -10,8 +10,8 @@ const loading = ref(true);
 const keyword = ref("");
 const menu = ref([]);
 const debounceFn = debounce((newKeyword: string) => {
-  axios.get("http://localhost:3000/menu").then((res) => {
-    menu.value = res.data.filter((item: any) =>
+  axios.get(".netlify/functions/query").then((res) => {
+    menu.value = res.data.menu.filter((item: any) =>
       item.product.includes(newKeyword)
     );
   });
