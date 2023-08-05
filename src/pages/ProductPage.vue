@@ -11,48 +11,50 @@ const route = useRoute();
 const store = useStore();
 const loading = ref(true);
 
-const menu = ref();
+const product = ref();
 const menuList = ref([]);
 const modal = ref(false);
 const type = ref("");
 
 onMounted(() => {
-  console.log(".netlify/functions/query" + route.params.id);
+  axios.get(".netlify/functions/query").then((res) => {
+    product.value = res.data.menu.find(
+      (item: { id: string }) => item.id == route.query.id
+    );
 
-  axios.get(".netlify/functions/query" + route.params.id).then((res) => {
-    menu.value = res.data;
-    menu.value.quantity = 1;
+    product.value.quantity = 1;
     loading.value = false;
   });
 });
 async function showModal(item: { type: string; img: string; product: string }) {
   await axios.get(".netlify/functions/query").then((res) => {
-    menuList.value = res.data;
+    menuList.value = res.data.menu;
     type.value = item.type;
     modal.value = true;
   });
 }
 
 function minusQtd() {
-  if ((menu.value.quantity as number) > 0) (menu.value.quantity as number)--;
+  if ((product.value.quantity as number) > 0)
+    (product.value.quantity as number)--;
 }
 function addsQtd() {
-  (menu.value.quantity as number)++;
+  (product.value.quantity as number)++;
 }
 
 function addToCart() {
-  if (menu.value.quantity !== 0) {
-    store.increment(menu.value);
+  if (product.value.quantity !== 0) {
+    store.increment(product.value);
     router.push("/cartPage");
   }
 }
 
 function confirm(selected: { type: string; img: string; product: string }) {
   if (selected) {
-    let index: any = menu.value.customize?.findIndex(
+    let index: any = product.value.customize?.findIndex(
       (item: { type: string }) => item.type === selected.type
     );
-    menu.value.customize?.splice(index, 1, selected);
+    product.value.customize?.splice(index, 1, selected);
   }
 
   modal.value = false;
@@ -72,20 +74,20 @@ function confirm(selected: { type: string; img: string; product: string }) {
       </div>
 
       <div>
-        <img :src="menu.img" alt="" class="object-cover w-full h-[40vh]" />
+        <img :src="product.img" alt="" class="object-cover w-full h-[40vh]" />
       </div>
       <div class="rounded-lg bg-white w-full p-6">
         <div class="flex flex-col space-y-2">
           <div class="text-center">
             <h1>
-              {{ menu.product }}
+              {{ product.product }}
             </h1>
           </div>
           <div class="gray-sm-text">
             <div class="mt-2">
               <div class="">
                 <div class="my-3 text-justify">
-                  {{ menu.description }}
+                  {{ product.description }}
                 </div>
               </div>
             </div>
@@ -93,7 +95,7 @@ function confirm(selected: { type: string; img: string; product: string }) {
           <div class="text-center flex justify-between py-3">
             <div class="self-center text-orange-500">
               <b class="text-xl"
-                >{{ menu.price }} <span class="text-sm"> 元 </span></b
+                >{{ product.price }} <span class="text-sm"> 元 </span></b
               >
             </div>
             <div class="flex items-center">
@@ -113,15 +115,15 @@ function confirm(selected: { type: string; img: string; product: string }) {
                 <input
                   type="number"
                   class="pl-6 focus:outline-none w-14 h-[33px] bg-slate-200"
-                  v-model="menu.quantity"
+                  v-model="product.quantity"
                 />
                 <button
-                  :disabled="menu.quantity <= 1"
+                  :disabled="product.quantity <= 1"
                   @click="minusQtd()"
                   type="submit"
                   class="absolute top-0 left-0 px-2.5 text-sm text-gray-800 bg-slate-200 rounded-l-full h-[33px]"
                 >
-                  <span v-show="menu.quantity > 1">-</span>
+                  <span v-show="product.quantity > 1">-</span>
                 </button>
               </div>
             </div>
@@ -131,7 +133,7 @@ function confirm(selected: { type: string; img: string; product: string }) {
             <div class="text-sm text-gray-400 mb-2">客製化</div>
             <div class="flex space-x-2 mb-3">
               <div
-                v-for="(item, index) in menu.customize"
+                v-for="(item, index) in product.customize"
                 :key="'index' + index"
               >
                 <div
@@ -150,7 +152,7 @@ function confirm(selected: { type: string; img: string; product: string }) {
             <div class="text-sm text-gray-400">備註</div>
             <div class="mt-2">
               <textarea
-                v-model="menu.comment"
+                v-model="product.comment"
                 cols="30"
                 rows="3"
                 class="w-full border pl-2 pt-1"

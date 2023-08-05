@@ -11,11 +11,6 @@ const items = store.items;
 
 const show = ref(false);
 
-const switchColor = computed(() => {
-  return items.length <= 0
-    ? "leading-none text-center py-1 px-[6px] bg-red-200 rounded-full absolute right-3 top-[6px] text-white text-[6pt]"
-    : "";
-});
 const showSearchbar = () => {
   if (!show.value) {
     show.value = true;
@@ -29,8 +24,6 @@ function goToItemsPages() {
     name: "CartPage",
   });
 }
-
-console.log(switchColor);
 </script>
 <template>
   <div>

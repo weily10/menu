@@ -30,13 +30,13 @@ const radioVar = ref("set");
 // ]);
 const changeCategory = (i: any) => {
   radioVar.value = i.target.value;
-  console.log("radiovar", radioVar);
 };
 async function goToProductPage(item: any) {
   let product = item;
+
   await router.push({
-    name: "Product",
-    params: { id: product.id },
+    path: "/menu",
+    query: { id: product.id },
   });
 }
 

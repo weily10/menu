@@ -19,8 +19,6 @@ const debounceFn = debounce((newKeyword: string) => {
 
 onMounted(async () => {
   await axios.get(".netlify/functions/query").then((res) => {
-    console.log("aaa", res.data.menu);
-
     menu.value = res.data.menu;
     loading.value = false;
   });
