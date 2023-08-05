@@ -87,7 +87,29 @@ function typeMod(radioVar: string, type: string) {
           <div class="bg-white border-gray-200">
             <div class="flex p-3">
               <div class="w-1/2">
-                <img :src="item.img" class="w-full h-[136px] object-cover" />
+                <picture>
+                  <source
+                    type="image/webp"
+                    :srcset="
+                      item.img +
+                      '?width=100 100w,' +
+                      item.img +
+                      '?width=200 200w'
+                    "
+                  />
+                  <img
+                    :src="item.img"
+                    loading="lazy"
+                    role="presentation"
+                    class="w-full h-[136px] object-cover"
+                    :srcset="
+                      item.img +
+                      '?width=100 100w,' +
+                      item.img +
+                      '?width=200 200w'
+                    "
+                  />
+                </picture>
               </div>
               <div
                 class="ml-3 space-y-3 w-1/2 h-[136px] flex flex-col justify-between"
