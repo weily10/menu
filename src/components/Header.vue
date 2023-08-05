@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useStore } from "../store/index";
-import { computed } from "vue";
 import router from "../router/index";
 
 defineProps(["modelValue"]);
