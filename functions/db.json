@@ -4,7 +4,7 @@
       "id": 0,
       "product": "漢堡套餐",
       "price": 120,
-      "img": "../src/assets/images/combo1.png",
+      "img": "https://i.imgur.com/S1DtXyq.png",
       "description": "使用源於法國的布里歐麵包，麵包中加入在地製成的地瓜餡，散發迷人的地瓜香氣，口感香甜柔軟，加入厚切蕈菇， 並淋上法式卡菲醬， 製作出香氣濃郁口感柔軟豐富，充滿異國風情的早餐漢堡。",
       "type": "set",
       "quantity": 0,
@@ -12,20 +12,20 @@
         {
           "product": "牛肉漢堡",
           "type": "hamburger",
-          "img": "../src/assets/images/hamburger1.jpg"
+          "img": "https://i.imgur.com/GRBuibZ.png"
          
         },
         {
           "product": "薯條",
           "type": "solo",
-          "img": "../src/assets/images/frenchfries.jpg"
+          "img": "https://i.imgur.com/tXkUJEE.jpg"
         },
         {
           "id": 8,
           "product": "可樂",
           "price": 50,
           "type": "drinks",
-          "img": "../src/assets/images/cocacola.jpg",
+          "img": "https://i.imgur.com/J6FXPav.jpg",
           "description": "",
           "quantity": 0,
           "customize": [
@@ -38,25 +38,25 @@
       "id": 1,
       "product": "set2",
       "price": 70,
-      "img": "../src/assets/images/set2.jpg",
+      "img": "https://i.imgur.com/Wqdhcis.jpg",
       "description": "三明治",
       "type": "set",
       "quantity": 0,
       "customize": [
         {
           "product": "三明治",
-          "img": "../src/assets/images/set2.jpg",
+          "img": "https://i.imgur.com/Wqdhcis.jpg",
           "type": "sandwich"
         },
         {
           "product": "薯條",
           "type": "solo",
-          "img": "../src/assets/images/frenchfries.jpg"
+          "img": "https://i.imgur.com/tXkUJEE.jpg"
         },
         {
           "product": "可樂",
           "type": "drinks",
-          "img": "../src/assets/images/cocacola.jpg"
+          "img": "https://i.imgur.com/J6FXPav.jpg"
         }
       ]
     },
@@ -64,25 +64,25 @@
       "id": 2,
       "product": "pasta套餐",
       "price": 200,
-      "img": "../src/assets/images/pasta.jpg",
+      "img": "https://i.imgur.com/9Ccd3LK.jpg",
       "description": "義大利麵組合",
       "type": "set",
       "quantity": 0,
       "customize": [
         {
           "product": "義大利麵",
-          "img": "../src//assets/images/spaghetti.jpeg",
+          "img": "https://i.imgur.com/aig0c10.jpg",
           "type": "spaghetti"
         },
         {
           "product": "薯條",
           "type": "solo",
-          "img": "../src/assets/images/frenchfries.jpg"
+          "img": "https://i.imgur.com/tXkUJEE.jpg"
         },
         {
           "product": "可樂",
           "type": "drinks",
-          "img": "../src/assets/images/cocacola.jpg"
+          "img": "https://i.imgur.com/J6FXPav.jpg"
         }
       ]
     },
@@ -90,7 +90,7 @@
       "id": 3,
       "product": "炸雞套餐",
       "price": 180,
-      "img": "../src/assets/images/chicken.jpg",
+      "img": "https://i.imgur.com/zPb6bDG.jpg",
       "description": "炸雞組合",
       "type": "set",
       "quantity": 0,
@@ -102,7 +102,7 @@
       "id": 4,
       "product": "牛肉漢堡",
       "price": 102,
-      "img": "../src/assets/images/hamburger1.jpg",
+      "img": "https://i.imgur.com/GRBuibZ.png",
       "description": "麵包、萵苣、培根、番茄、澳洲牛肉、特色醬",
       "type": "hamburger",
       "quantity": 0,
@@ -114,7 +114,7 @@
       "id": 5,
       "product": "三明治",
       "price": 60,
-      "img": "../src/assets/images/sandwich.png",
+      "img": "https://i.imgur.com/1h8vQ3f.png",
       "description": "白吐司、起司、火腿",
       "type": "sandwich",
       "quantity": 0,
@@ -126,7 +126,7 @@
       "id": 6,
       "product": "義大利麵",
       "price": 160,
-      "img": "../src//assets/images/spaghetti.jpeg",
+      "img": "https://i.imgur.com/aig0c10.jpg",
       "description": "麵、起司、火腿",
       "type": "spaghetti",
       "quantity": 0,
@@ -138,7 +138,7 @@
       "id": 7,
       "product": "奶茶",
       "price": 50,
-      "img": "../src/assets/images/milktea.png",
+      "img": "https://i.imgur.com/MrEi4FK.png",
       "description": "",
       "type": "drinks",
       "quantity": 0,
@@ -151,7 +151,7 @@
       "product": "可樂",
       "price": 50,
       "type": "drinks",
-      "img": "../src/assets/images/cocacola.jpg",
+      "img": "https://i.imgur.com/J6FXPav.jpg",
       "description": "",
       "quantity": 0,
       "customize": [
@@ -162,7 +162,7 @@
       "id": 9,
       "product": "幾塊（6塊）",
       "price": 80,
-      "img": "../src/assets/images/nuggets.png",
+      "img": "https://i.imgur.com/hGiipNg.png",
       "description": "",
       "type": "solo",
       "quantity": 0,
@@ -175,7 +175,7 @@
       "product": "薯條",
       "type": "solo",
       "price": 50,
-      "img": "../src/assets/images/frenchfries.jpg",
+      "img": "https://i.imgur.com/tXkUJEE.jpg",
       "description": "",
       "quantity": 0,
       "customize": [
@@ -187,7 +187,7 @@
       "product": "angus漢堡",
       "type": "hamburger",
       "price": 100,
-      "img": "../src/assets/images/hamburger.png",
+      "img": "https://i.imgur.com/ReswvRF.jpg",
       "description": "",
       "quantity": 0,
       "customize": [
@@ -199,7 +199,7 @@
       "product": "培根",
       "type": "add",
       "price": 40,
-      "img": "../src/assets/images/frenchfries.jpg",
+      "img": "https://images.unsplash.com/photo-1606851682837-019baf2e8da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
       "description": "",
       "quantity": 0,
       "customize": [
