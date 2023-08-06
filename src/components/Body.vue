@@ -24,10 +24,6 @@ const items = ref([
 ]);
 const radioVar = ref("set");
 
-// const drinks = ref([
-//   { product: "果汁", price: 40, img: hamburger },
-//   { product: "奶茶", price: 30, img: sandwich },
-// ]);
 const changeCategory = (i: any) => {
   radioVar.value = i.target.value;
 };
@@ -47,6 +43,10 @@ function typeMod(radioVar: string, type: string) {
     return radioVar === "main";
   }
 }
+
+// const vFocus = {
+//   mounted: (el) => el.focus(),
+// };
 </script>
 <template>
   <div>
@@ -87,29 +87,13 @@ function typeMod(radioVar: string, type: string) {
           <div class="bg-white border-gray-200">
             <div class="flex p-3">
               <div class="w-1/2">
-                <picture>
-                  <source
-                    type="image/webp"
-                    :srcset="
-                      item.img +
-                      '?width=100 100w,' +
-                      item.img +
-                      '?width=200 200w'
-                    "
-                  />
+                <figure>
                   <img
-                    :src="item.img"
-                    loading="lazy"
-                    role="presentation"
+                    v-lazyload
+                    :data-srcset="item.img"
                     class="w-full h-[136px] object-cover"
-                    :srcset="
-                      item.img +
-                      '?width=100 100w,' +
-                      item.img +
-                      '?width=200 200w'
-                    "
                   />
-                </picture>
+                </figure>
               </div>
               <div
                 class="ml-3 space-y-3 w-1/2 h-[136px] flex flex-col justify-between"
