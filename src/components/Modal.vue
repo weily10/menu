@@ -50,7 +50,8 @@ function typeMod(itemType: string, type: string) {
                       class="opacity-0 w-0 h-0 absolute"
                     />
                     <img
-                      :src="item.img"
+                      v-lazyload
+                      :data-srcset="item.img"
                       class="w-12 h-12 object-cover cursor-pointer"
                       alt=""
                     />

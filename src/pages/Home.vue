@@ -9,11 +9,12 @@ import debounce from "../../utils/debounce";
 const loading = ref(true);
 const keyword = ref("");
 const menu = ref([]);
-const debounceFn = debounce((newKeyword: string) => {
-  axios.get(".netlify/functions/query").then((res) => {
+const debounceFn = debounce(async (newKeyword: string) => {
+  await axios.get(".netlify/functions/query").then((res) => {
     menu.value = res.data.menu.filter((item: any) =>
       item.product.includes(newKeyword)
     );
+    loading.value = false;
   });
 }, 1000);
 
@@ -25,6 +26,7 @@ onMounted(async () => {
 });
 
 watch(keyword, (newKeyword) => {
+  loading.value = true;
   if (keyword) {
     debounceFn(newKeyword);
   }

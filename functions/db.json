@@ -36,7 +36,7 @@
     },
     {
       "id": 1,
-      "product": "set2",
+      "product": "三明治套餐",
       "price": 70,
       "img": "https://res.cloudinary.com/dodd00cq7/image/upload/v1691225965/set2_dg6ksd.jpg",
       "description": "三明治",
@@ -62,7 +62,7 @@
     },
     {
       "id": 2,
-      "product": "pasta套餐",
+      "product": "義大利麵套餐",
       "price": 200,
       "img": "https://res.cloudinary.com/dodd00cq7/image/upload/v1691225960/pasta_hcujsy.jpg",
       "description": "義大利麵組合",
@@ -95,7 +95,21 @@
       "type": "set",
       "quantity": 0,
       "customize": [
-        {}
+        {
+          "product": "炸雞",
+          "img": "https://res.cloudinary.com/dodd00cq7/image/upload/v1691224707/zPb6bDG_rsp4vo.jpg",
+          "type": "spaghetti"
+        },
+        {
+          "product": "薯條",
+          "type": "solo",
+          "img": "https://res.cloudinary.com/dodd00cq7/image/upload/v1691225957/frenchfries_wywkji.jpg"
+        },
+        {
+          "product": "可樂",
+          "type": "drinks",
+          "img": "https://res.cloudinary.com/dodd00cq7/image/upload/v1691225956/cocacola_xicxvb.jpg"
+        }
       ]
     },
     {
