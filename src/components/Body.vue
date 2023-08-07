@@ -88,11 +88,7 @@ function typeMod(radioVar: string, type: string) {
             <div class="flex p-3">
               <div class="w-1/2">
                 <figure>
-                  <img
-                    v-lazyload
-                    :data-srcset="item.img"
-                    class="w-full h-[136px] object-cover"
-                  />
+                  <img :src="item.img" class="w-full h-[136px] object-cover" />
                 </figure>
               </div>
               <div
