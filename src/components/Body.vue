@@ -5,7 +5,7 @@ import Loading from "../components/Loading.vue";
 
 defineProps<{
   menu: {
-    id: number;
+    id: string;
     product: string;
     price: number;
     img: string;
@@ -15,6 +15,18 @@ defineProps<{
   }[];
   loading: boolean;
 }>();
+
+const el = ref();
+
+function loaded(id: string) {
+  let index = el.value
+    .map((i: any) => i.querySelector("img").id)
+    .indexOf("id" + id);
+  console.log(el.value[index].querySelector(".blurredimg"));
+  el.value[index].classList.add("loaded");
+
+  el.value[index].classList.remove("blurredimg");
+}
 
 const items = ref([
   { id: "set", name: "套餐" },
@@ -44,9 +56,9 @@ function typeMod(radioVar: string, type: string) {
   }
 }
 
-// const vFocus = {
-//   mounted: (el) => el.focus(),
-// };
+// function blurredimg(item){
+//   return
+// }
 </script>
 <template>
   <div>
@@ -87,9 +99,15 @@ function typeMod(radioVar: string, type: string) {
           <div class="bg-white border-gray-200">
             <div class="flex p-3">
               <div class="w-1/2">
-                <figure>
-                  <img :src="item.img" class="w-full h-[136px] object-cover" />
-                </figure>
+                <div ref="el" class="blurredimg">
+                  <img
+                    :id="'id' + item.id"
+                    :src="item.img"
+                    class="w-full h-[136px] object-cover"
+                    loading="lazy"
+                    @load="loaded(item.id)"
+                  />
+                </div>
               </div>
               <div
                 class="ml-3 space-y-3 w-1/2 h-[136px] flex flex-col justify-between"
@@ -118,4 +136,32 @@ function typeMod(radioVar: string, type: string) {
   </div>
 </template>
 
-<style></style>
+<style>
+.blurredimg {
+  background-color: #fcb665;
+  background-size: cover;
+  animation: pulse 2.5s infinite;
+  animation-fill-mode: forwards;
+}
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.loaded {
+  content: none;
+  animation: none;
+}
+
+.blurred-img img {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+</style>
