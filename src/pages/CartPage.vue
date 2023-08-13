@@ -2,10 +2,13 @@
 import { useStore } from "../store/index";
 import router from "../router/index";
 import Item from "../global/types";
+import { ref } from "vue";
+import ConfirmModal from "../components/ConfirmModal.vue";
 
 const store = useStore();
 
 const items: Item[] = store.items;
+const isShow = ref(false);
 
 function changeLabel(i: { type: string }) {
   if (i.type === "hamburger" || i.type === "sandwich") return "主餐：";
@@ -30,10 +33,11 @@ function minusQtd(order: Item) {
 }
 
 function goToCheckout() {
-  const time = new Date().getHours() + ":" + new Date().getMinutes();
+  isShow.value = true;
+  // const time = new Date().getHours() + ":" + new Date().getMinutes();
 
-  localStorage.setItem("time", time);
-  router.push({ name: "CheckOut" });
+  // localStorage.setItem("time", time);
+  // router.push({ name: "CheckOut" });
 }
 </script>
 
@@ -144,5 +148,6 @@ function goToCheckout() {
       </div>
       <div class="h-28"></div>
     </div>
+    <ConfirmModal v-show="isShow" @cancel="isShow = false"></ConfirmModal>
   </div>
 </template>
